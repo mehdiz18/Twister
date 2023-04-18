@@ -1,0 +1,67 @@
+@import 'common.css';
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.signupForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 10%;
+}
+
+.logo{
+    margin-top: 4%;
+}
+.signupTitle{
+    margin-top: 2%;
+    font-size: 20px;
+}
+
+Button{
+    margin-top: 4%;
+} 
+
+select {
+    margin-top: 5%;
+    padding: 3% 3% 3% 7%;
+    border: none;
+    background-color: rgb(240, 240, 240);
+    border-radius: 20px;
+    width: 100%;
+}
+select:invalid{
+    color:rgb(102, 102, 102);
+}
+select:valid{
+    color: black;
+}
+.signupForm>input{
+    margin-top:6%;
+}
+
+label {
+    margin-top: 4%;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.textClickS{
+    font-size: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    border: none;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-bottom: 0%;
+}
+
+.textClickS:hover{
+    text-decoration: underline;
+    color: rgb(66, 66, 66);
+    cursor: pointer;
+}

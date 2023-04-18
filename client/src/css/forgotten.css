@@ -1,0 +1,33 @@
+@import 'common.css';
+.forgottenContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.forgottenForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 10%;
+}
+
+.logo{
+    margin-top: 4%;
+}
+.forgottenTitle{
+    margin-top: 2%;
+    font-size: 20px;
+}
+
+.MuiButton-root{
+    margin-top: 4% !important;
+}
+.forgottenForm>input{
+    margin-top:6%;
+}
+

@@ -1,0 +1,34 @@
+button{
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 50px;
+    padding: 5%;
+    font-weight: 900;
+    width: 90%;
+}
+
+button:hover{
+    cursor: pointer;
+    filter: opacity(0.6);
+}
+
+input{
+    border: none;
+    background-color: rgb(240, 240, 240);
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+    padding-left: 10%;
+}
+
+select:invalid{
+    color: rgb(102, 102, 102);
+}
+/* Styling Button */
+.MuiButton-root{
+    border-radius: 50px !important;
+    margin:2% !important;
+    background-color: #1D9BF0 !important;
+}
