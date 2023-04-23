@@ -12,7 +12,9 @@ button:hover{
     cursor: pointer;
     filter: opacity(0.6);
 }
-
+button.sideBarButton{
+    background-color: transparent !important;
+}
 input{
     border: none;
     background-color: rgb(240, 240, 240);

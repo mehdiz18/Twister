@@ -50,24 +50,30 @@ const Profile = () => {
       alignItems="center"
       direction="column"
       sx={{
-        borderLeft: "1px solid",
-        borderColor: "divider",
         width: "100%",
         height: "100%",
       }}
-      pt={10}
+      pt={3}
     >
-      <Avatar sx={{ bgcolor: deepOrange[300], width: 100, height: 100 }}>
-        <Person sx={{ fontSize: 70 }}></Person>
-      </Avatar>
-      <Typography variant="h5" mt={2}>
-        Elhadi CHITER
-      </Typography>
-      <Button variant="contained" sx={{ width: "30%" }}>
-        Ajouter
-      </Button>
-      <Grid alignSelf="flex-start" item container pl={4}>
-        <Typography variant="h6">999 Amis</Typography>
+      <Grid
+        item
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Avatar sx={{ bgcolor: deepOrange[300], width: 100, height: 100 }}>
+          <Person sx={{ fontSize: 70 }}></Person>
+        </Avatar>
+        <Typography variant="h5" mt={2}>
+          Elhadi CHITER
+        </Typography>
+        <Button variant="contained" sx={{ width: "30%" }}>
+          Ajouter
+        </Button>
+        <Grid alignSelf="flex-start" item container pl={4}>
+          <Typography variant="h6">999 Amis</Typography>
+        </Grid>
       </Grid>
       <Grid item container>
         <NavBar handleChange={handleTabChange}></NavBar>

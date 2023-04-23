@@ -50,23 +50,23 @@ const Home = ({ loggedState, logout }) => {
     setTwists([newItem, ...twists]);
   };
   const [index, setIndex] = useState(0);
-  const handleIndexChange = () => {
-    setIndex((index + 1) % 2);
+  const handleIndexChange = (index) => {
+    setIndex(index);
   };
+
   const views = [<Feed twists={twists} addTwist={addTwist} />, <Profile />];
+
   return loggedState ? (
     <Grid
       container
-      direction="row"
-      justifyContent="space-around"
-      sx={{ height: "100%" }}
+      direction="column"
+      width={0.65}
+      justifyContent="space-between"
     >
-      <Grid item xs={2}>
+      <Grid item container>
         <SideBar disconnect={logout} changeView={handleIndexChange}></SideBar>
       </Grid>
-      <Grid container item direction="column" xs={8}>
-        {views[index]}
-      </Grid>
+      <Grid item>{views[index]}</Grid>
     </Grid>
   ) : (
     <Welcome></Welcome>
