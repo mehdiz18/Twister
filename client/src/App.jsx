@@ -27,7 +27,6 @@ function App() {
     setShowLogin(false);
     setShowForgot(false);
     setShowRegister(false);
-    console.log("azulus");
   };
   return showLogin ? (
     <Login
@@ -41,7 +40,7 @@ function App() {
       changeWelcomeView={changeWelcomeState}
     />
   ) : showForgot ? (
-    <Forgotten />
+    <Forgotten changeLoginView={changeLoginState} />
   ) : (
     <Welcome
       changeLoginState={changeLoginState}

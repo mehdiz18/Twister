@@ -1,18 +1,31 @@
+//TODO: Pass the userId to the Home
+//TODO: Write a hook with useEffect to loadPosts
+
 import "../css/login.css";
 import logo from "./../img/logo.png";
 import banner from "./../img/banner.png";
-import { Button, Grid, Link } from "@mui/material";
+import { Button, Grid, Link, Typography } from "@mui/material";
 import Home from "./Home/Home";
-import { useState } from "react";
+import useLogin from "../hooks/useLogin";
 const Login = ({ changeRegisterView, changeForgotView, changeWelcomeView }) => {
-  const [logged, setLogged] = useState(false);
-  const changeLoginState = () => {
-    setLogged(!logged);
+  const [
+    email,
+    setEmail,
+    password,
+    setPassword,
+    loginState,
+    setLoginState,
+    logout,
+    loginError,
+    userId,
+  ] = useLogin();
+  let inputStyle = {
+    border: loginError ? "2px solid #f06e60" : "none",
   };
   return (
     <Grid container justifyContent="center">
-      {logged ? (
-        <Home logout={changeLoginState} loggedState={logged} />
+      {loginState ? (
+        <Home logout={logout} loggedState={loginState} />
       ) : (
         <Grid container item mt={2}>
           <Link
@@ -32,12 +45,27 @@ const Login = ({ changeRegisterView, changeForgotView, changeWelcomeView }) => {
               <img src={logo} alt="logo" className="logo"></img>
               <h1 className="banner">Connectez-Vous</h1>
               <div className="form">
-                <input id="username" type="email" placeholder="Email"></input>
+                <input
+                  id="username"
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={setEmail}
+                  style={inputStyle}
+                ></input>
                 <input
                   id="password"
                   type="password"
                   placeholder="Mot de Passe"
+                  value={password}
+                  onChange={setPassword}
+                  style={inputStyle}
                 ></input>
+                {loginError && (
+                  <Typography variant="subtitle2" color="red" mt={2}>
+                    Email ou Mot de passe Incorrects
+                  </Typography>
+                )}
                 <Link
                   underline="hover"
                   color="inherit"
@@ -52,7 +80,7 @@ const Login = ({ changeRegisterView, changeForgotView, changeWelcomeView }) => {
                 <Button
                   variant="contained"
                   size="large"
-                  onClick={changeLoginState}
+                  onClick={setLoginState}
                 >
                   Connexion
                 </Button>
