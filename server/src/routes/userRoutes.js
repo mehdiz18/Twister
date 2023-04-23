@@ -18,8 +18,7 @@ router.get("/infos", getUsersInfos);
 router
   .get("/:id", getUser)
   .post("/", postUser)
-  .put("/:id", updateUser)
-  .delete("/:id", deleteUser)
-  
+  .put("/", updateUser)
+  .delete("/:id", deleteUser);
 
 module.exports = router;

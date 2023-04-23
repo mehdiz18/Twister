@@ -6,9 +6,11 @@ const router = require("./routes");
 const { populateDb } = require("./config/initDb");
 const { dbStats } = require("./config/dbStats");
 const { MongoDBStore } = require("connect-mongodb-session");
+const cors = require("cors");
 
 const app = express();
 
+app.use(cors());
 app.use(
   session({
     secret: "azul fellak",

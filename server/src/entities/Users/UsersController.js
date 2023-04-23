@@ -4,7 +4,6 @@ const asyncHandler = require("express-async-handler");
 const colors = require("colors");
 
 const getUser = asyncHandler(async (req, res) => {
-  
   let user = await User.findById(req.params.id);
   if (!user) {
     res.status(404);
@@ -45,11 +44,15 @@ const updateUser = asyncHandler(async (req, res) => {
     throw new Error("Please provide a new password");
   }
 
-  let user = await User.findByIdAndUpdate(
-    req.params.id,
+  let user = await User.findOneAndUpdate(
+    { email: req.body.email },
     { password: req.body.password },
     { returnDocument: "after" }
   );
+  if (!user) {
+    res.status(404);
+    throw new Error("Invalid Email");
+  }
   res.status(200).json(user);
 });
 
@@ -59,7 +62,6 @@ const deleteUser = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("User not found");
   }
-  const usersCount = await User.find().count();
   res.json({ id: user.id, deleted: true });
 });
 
@@ -91,8 +93,8 @@ const logoutUser = (req, res) => {
 const getUsersInfos = async (req, res) => {
   let nombre = await User.countDocuments();
   res.status(200).json({
-    message : `le nombre des utilisateurs est ${nombre}`
-  })
+    message: `le nombre des utilisateurs est ${nombre}`,
+  });
 };
 
 module.exports = {
@@ -102,5 +104,5 @@ module.exports = {
   deleteUser,
   loginUser,
   logoutUser,
-  getUsersInfos
+  getUsersInfos,
 };
