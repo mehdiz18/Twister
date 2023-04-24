@@ -17,27 +17,27 @@ const Home = ({ loggedState, logout, userId }) => {
       },
       content:
         "Aute laborum ipsum ut proident nostrud cupidatat nostrud consectetur fugiat. Id pariatur proident consectetur ipsum commodo magna excepteur non. Magna adipisicing et dolore do cupidatat consectetur cupidatat anim aute voluptate enim. Lorem exercitation ut labore Lorem cupidatat ut eiusmod anim. Velit labore elit nisi labore ullamco velit sunt consequat ipsum est cillum dolore. Id ea ullamco mollit excepteur enim amet minim aliquip ut occaecat deserunt.",
-      likesCount: 3,
+      likes: 3,
     },
     {
-      id: 2,
+      id: 1,
       user: {
-        firstName: "Diva",
-        lastName: "REBECCA",
+        firstName: "Mehdi",
+        lastName: "ZENINE",
       },
       content:
         "Aute laborum ipsum ut proident nostrud cupidatat nostrud consectetur fugiat. Id pariatur proident consectetur ipsum commodo magna excepteur non. Magna adipisicing et dolore do cupidatat consectetur cupidatat anim aute voluptate enim. Lorem exercitation ut labore Lorem cupidatat ut eiusmod anim. Velit labore elit nisi labore ullamco velit sunt consequat ipsum est cillum dolore. Id ea ullamco mollit excepteur enim amet minim aliquip ut occaecat deserunt.",
-      likesCount: 5,
+      likes: 3,
     },
     {
-      id: 3,
+      id: 1,
       user: {
-        firstName: "Emmanuel",
-        lastName: "MACRON",
+        firstName: "Mehdi",
+        lastName: "ZENINE",
       },
       content:
         "Aute laborum ipsum ut proident nostrud cupidatat nostrud consectetur fugiat. Id pariatur proident consectetur ipsum commodo magna excepteur non. Magna adipisicing et dolore do cupidatat consectetur cupidatat anim aute voluptate enim. Lorem exercitation ut labore Lorem cupidatat ut eiusmod anim. Velit labore elit nisi labore ullamco velit sunt consequat ipsum est cillum dolore. Id ea ullamco mollit excepteur enim amet minim aliquip ut occaecat deserunt.",
-      likesCount: 69,
+      likes: 3,
     },
   ]);
 

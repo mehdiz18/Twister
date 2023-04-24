@@ -11,22 +11,20 @@ import { useState } from "react";
 const Twist = ({ message }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(message.likes);
-  
+
   const toggleLike = () => {
     !isLiked ? setLikesCount(likesCount + 1) : setLikesCount(likesCount - 1);
     setIsLiked(!isLiked);
   };
 
-  const addComment = ({ messageId, comment }) =>{
-
+  const addComment = ({ messageId, comment }) => {
     // let liste = document.getElementById("listecommissions");
     // let elt = document.createElement("li");
     // let newText = document.createTextNode("texte");
     // elt.appendChild(newText);
-    // liste.appendChild(elt);    
+    // liste.appendChild(elt);
     console.log("Hello");
-    
-  }
+  };
   return (
     <Grid
       container
@@ -35,27 +33,28 @@ const Twist = ({ message }) => {
       py={2}
       direction="row"
     >
-      <Grid item xs={1} mx={2}>
+      <Grid item mx={2} width={0.05}>
         <Avatar alt="userAvatar" sx={{ bgcolor: deepPurple[500] }}>
+          {message.user.firstName[0]}
+          {message.user.lastName[0]}
           {message.user.firstName[0]}
           {message.user.lastName[0]}
         </Avatar>
       </Grid>
-      <Grid item container xs={10} rowSpacing={1} direction="column">
+      <Grid item container direction="column" width={0.9}>
         <Grid item>
+          <Typography variant="subtitle2">{`${message.user.firstName} ${message.user.lastName}`}</Typography>
           <Typography variant="subtitle2">{`${message.user.firstName} ${message.user.lastName}`}</Typography>
         </Grid>
         <Grid item>
           <Typography variant="body2" style={{ wordBreak: "break-word" }}>
             {message.content}
+            {message.content}
           </Typography>
         </Grid>
         <Grid item container>
           <Grid item>
-            <IconButton 
-              disableRipple
-              onClick={addComment}
-              >
+            <IconButton disableRipple onClick={addComment}>
               <ChatBubbleOutline />
             </IconButton>
           </Grid>
@@ -64,10 +63,10 @@ const Twist = ({ message }) => {
               disableRipple
               disableTouchRipple
               disableFocusRipple
-              onClick={toggleLike}
+              // onClick={toggleLike}
             >
               {isLiked ? <Favorite color="error" /> : <FavoriteBorder />}
-              <Typography ml={1}>{likesCount}</Typography>
+              {/* <Typography ml={1}>{likesCount}</Typography> */}
             </IconButton>
           </Grid>
         </Grid>

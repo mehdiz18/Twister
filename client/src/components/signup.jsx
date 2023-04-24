@@ -65,12 +65,7 @@ const Signup = ({ changeWelcomeView, changeLoginView }) => {
     }
     setSuccess(true);
     changeLoginView();
-<<<<<<< HEAD
-
-  }
-=======
   };
->>>>>>> c03ab7a14 (started useFeedTwists)
 
   return (
     <div>

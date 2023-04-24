@@ -6,29 +6,32 @@ import ListTwist from "../Twist/ListTwist";
 import NavBar from "./NavBar";
 import axios from "axios";
 
-const Profile = ({userId}) => {
+const Profile = ({ userId }) => {
   const [errMsg, setErrMsg] = useState("");
   const [twists, setTwists] = useState([]);
   const [userName, setUserName] = useState("");
 
-  useEffect(() =>{
+  useEffect(() => {
     getMessages(userId);
   }, []);
 
-  const getMessages = async(userId) =>{
-    try{
+  const getMessages = async (userId) => {
+    try {
       let response = await axios.get(
-        `http://127.0.0.1:5000/api/messages/${userId.current}`);
-      
+        `http://127.0.0.1:5000/api/messages/${userId.current}`
+      );
+
       let messages = response.data;
-      
-      setUserName(response.data[0].user.firstName + " " + response.data[0].user.lastName);
+
+      setUserName(
+        response.data[0].user.firstName + " " + response.data[0].user.lastName
+      );
       setTwists(messages);
-      } catch (err) {
-          setErrMsg("Erreur Lors de connexion au serveur");
-          console.log(err);
-      }
-  }
+    } catch (err) {
+      setErrMsg("Erreur Lors de connexion au serveur");
+      console.log(err);
+    }
+  };
   const [tabValue, setTabValue] = useState(0);
   const tabs = [<ListTwist twists={twists} />, <ListTwist twists={twists} />];
   const handleTabChange = (value) => {
