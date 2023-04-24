@@ -1,6 +1,6 @@
 import { Grid, Avatar, Input, Button } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import axios from "axios";
 
@@ -10,6 +10,25 @@ const NewTwist = ({ addTwist, userId }) => {
   
     const [content, setContent] = useState("");
     const [errMsg, setErrMsg] = useState("");
+    const [initials, setInitials] = useState("");
+
+    useEffect(() =>{
+      getInitials(userId);
+    }, []);
+
+    const getInitials = async(userId) => {
+      try {
+        let res = await axios.get(
+          `http://127.0.0.1:5000/api/users/${userId.current}`
+        );
+        setInitials(res.data.firstName[0]+res.data.lastName[0]);
+        
+      } catch(err) {
+        setErrMsg("Erreur lors de la connexion au serevreur");
+        console.log(err);
+      }
+    }
+
     const handleSubmit = async(event) =>{
       event.preventDefault();
       if (content !== "") {
@@ -18,7 +37,7 @@ const NewTwist = ({ addTwist, userId }) => {
             "http://127.0.0.1:5000/api/messages", 
             {content : content, userId : userId.current});
           console.log(response.data);
-  
+          
           } catch (err) {
             setErrMsg("Erreur lors de la connexion au serevreur");
             console.log(err);
@@ -51,7 +70,7 @@ const NewTwist = ({ addTwist, userId }) => {
         p={2}
       >
         <Avatar alt="userAvatar" sx={{ bgcolor: deepOrange[500] }}>
-          HC
+          {initials}
         </Avatar>
         <Input
           type="text"
