@@ -4,7 +4,9 @@ const ListTwist = ({ twists }) => {
   return (
     <Grid container>
       {twists.map((item) => {
-        return <Twist message={item} key={item.id}></Twist>;
+        if (item !== "") {
+          return <Twist message={item} key={item.id}></Twist>;
+        }
       })}
     </Grid>
   );

@@ -52,14 +52,16 @@ const Home = ({ loggedState, logout, userId}) => {
           `http://127.0.0.1:5000/api/users/${userId.current}`);
         
         let newItem = {
-          message: content,
+          content : content,
           user: {
             firstName: response.data.firstName,
             lastName: response.data.lastName,
           },
           likesCount : 0,
         };
+        console.log("Hemoud");
         setTwists([newItem, ...twists]);
+        console.log(twists);
       } catch (err) {
           setErrMsg("Erreur Lors de connexion au serveur 0");
           console.log(err);
