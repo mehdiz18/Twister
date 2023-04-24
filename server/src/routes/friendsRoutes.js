@@ -5,5 +5,8 @@ const {
   deleteFriend,
 } = require("../entities/Friends/FriendsController");
 const router = express.Router();
-router.get("/", getListFriends).post("/", postFriend).delete("/", deleteFriend);
+router
+  .get("/:id", getListFriends)
+  .post("/", postFriend)
+  .delete("/", deleteFriend);
 module.exports = router;

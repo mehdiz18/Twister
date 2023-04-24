@@ -4,8 +4,6 @@ const Messages = require("../entities/Messages/MessagesController");
 
 router.get("/:id", Messages.getListMessage);
 router.post("/", Messages.postMessage);
-router.get("/gezget", Messages.getMessagesLessThenOneHour);
-router.get("/azul", Messages.mehdiFunction);
 // router.get("/infos", Messages.getMessageInfos);
 router
   .route("/:id/infos")

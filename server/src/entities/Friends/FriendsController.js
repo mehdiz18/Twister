@@ -4,7 +4,7 @@ const User = require("../Users/User");
 
 const getListFriends = asyncHandler(async (req, res) => {
   let friends = await Friends.find({
-    $or: [{ friend1: req.body.userId }, { friend2: req.body.userId }],
+    $or: [{ friend1: req.params.id }, { friend2: req.params.id }],
   })
     .populate("friend1")
     .populate("friend2");
