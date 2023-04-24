@@ -37,8 +37,6 @@ const Twist = ({ message }) => {
         <Avatar alt="userAvatar" sx={{ bgcolor: deepPurple[500] }}>
           {message.user.firstName[0]}
           {message.user.lastName[0]}
-          {message.user.firstName[0]}
-          {message.user.lastName[0]}
         </Avatar>
       </Grid>
       <Grid item container direction="column" width={0.9}>
@@ -48,7 +46,6 @@ const Twist = ({ message }) => {
         </Grid>
         <Grid item>
           <Typography variant="body2" style={{ wordBreak: "break-word" }}>
-            {message.content}
             {message.content}
           </Typography>
         </Grid>
