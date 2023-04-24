@@ -33,11 +33,12 @@ const NewTwist = ({ addTwist, userId }) => {
       event.preventDefault();
       if (content !== "") {
         try {
+          console.log(content);
           let response = await axios.post(
             "http://127.0.0.1:5000/api/messages", 
             {content : content, userId : userId.current});
           console.log(response.data);
-          
+        
           } catch (err) {
             setErrMsg("Erreur lors de la connexion au serevreur");
             console.log(err);
