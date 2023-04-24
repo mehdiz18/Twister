@@ -7,7 +7,7 @@ import Feed from "./Feed";
 
 import axios from "axios";
 
-const Home = ({ loggedState, logout, userId}) => {
+const Home = ({ loggedState, logout, userId }) => {
   const [twists, setTwists] = useState([
     {
       id: 1,
@@ -43,31 +43,29 @@ const Home = ({ loggedState, logout, userId}) => {
 
   const [errMsg, setErrMsg] = useState("");
 
-  const addTwist = async(content) => {
-    
-
+  const addTwist = async (content) => {
     if (content !== "") {
       try {
         let response = await axios.get(
-          `http://127.0.0.1:5000/api/users/${userId.current}`);
-        
+          `http://127.0.0.1:5000/api/users/${userId.current}`
+        );
+
         let newItem = {
-          content : content,
+          content: content,
           user: {
             firstName: response.data.firstName,
             lastName: response.data.lastName,
           },
-          likesCount : 0,
+          likesCount: 0,
         };
         console.log("Hemoud");
         setTwists([newItem, ...twists]);
         console.log(twists);
       } catch (err) {
-          setErrMsg("Erreur Lors de connexion au serveur 0");
-          console.log(err);
+        setErrMsg("Erreur Lors de connexion au serveur 0");
+        console.log(err);
       }
-    }
-    else {
+    } else {
       setErrMsg("Message content should not be Void");
       console.log(errMsg);
     }
@@ -76,8 +74,11 @@ const Home = ({ loggedState, logout, userId}) => {
   const handleIndexChange = (index) => {
     setIndex(index);
   };
-  
-  const views = [<Feed twists={twists} addTwist={addTwist} userId = {userId}/>, <Profile userId = {userId}/>];
+
+  const views = [
+    <Feed twists={twists} addTwist={addTwist} userId={userId} />,
+    <Profile userId={userId} />,
+  ];
 
   return loggedState ? (
     <Grid
