@@ -60,10 +60,10 @@ const Twist = ({ message }) => {
               disableRipple
               disableTouchRipple
               disableFocusRipple
-              // onClick={toggleLike}
+              onClick={toggleLike}
             >
               {isLiked ? <Favorite color="error" /> : <FavoriteBorder />}
-              {/* <Typography ml={1}>{likesCount}</Typography> */}
+              <Typography ml={1}>{likesCount}</Typography>
             </IconButton>
           </Grid>
         </Grid>
