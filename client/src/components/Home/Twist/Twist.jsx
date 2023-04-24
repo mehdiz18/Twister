@@ -8,9 +8,9 @@ import { deepPurple } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
 import { useState } from "react";
 
-const Twist = ({ content }) => {
+const Twist = ({ message }) => {
   const [isLiked, setIsLiked] = useState(false);
-  const [likesCount, setLikesCount] = useState(content.likesCount);
+  const [likesCount, setLikesCount] = useState(message.likes);
   
   const toggleLike = () => {
     !isLiked ? setLikesCount(likesCount + 1) : setLikesCount(likesCount - 1);
@@ -37,17 +37,17 @@ const Twist = ({ content }) => {
     >
       <Grid item xs={1} mx={2}>
         <Avatar alt="userAvatar" sx={{ bgcolor: deepPurple[500] }}>
-          {content.user.name[0]}
-          {content.user.surname[0]}
+          {message.user.firstName[0]}
+          {message.user.lastName[0]}
         </Avatar>
       </Grid>
       <Grid item container xs={10} rowSpacing={1} direction="column">
         <Grid item>
-          <Typography variant="subtitle2">{`${content.user.name} ${content.user.surname}`}</Typography>
+          <Typography variant="subtitle2">{`${message.user.firstName} ${message.user.lastName}`}</Typography>
         </Grid>
         <Grid item>
           <Typography variant="body2" style={{ wordBreak: "break-word" }}>
-            {content.message}
+            {message.content}
           </Typography>
         </Grid>
         <Grid item container>

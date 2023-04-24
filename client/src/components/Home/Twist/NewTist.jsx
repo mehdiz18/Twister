@@ -2,24 +2,34 @@ import { Grid, Avatar, Input, Button } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 import { useState } from "react";
 
-const handleSubmit = async(event) =>{
-  // event.preventDefault();
+import axios from "axios";
 
-  // try {
-  //   let response = await axios.post(
-  //     "http://127.0.0.1:5000/api/users", 
-  //     {content : content, userId : userId});
-  //   console.log(response.data);
-  //   setSuccess(!success);
-  //   // clear input fields
-  // } catch (err) {
-  // }
 
-}
 
 const NewTwist = ({ addTwist, userId }) => {
-  const [content, setContent] = useState("");
-  return (
+  
+    const [content, setContent] = useState("");
+    const [errMsg, setErrMsg] = useState("");
+    const handleSubmit = async(event) =>{
+      event.preventDefault();
+      if (content !== "") {
+        try {
+          let response = await axios.post(
+            "http://127.0.0.1:5000/api/messages", 
+            {content : content, userId : userId.current});
+          console.log(response.data);
+  
+          } catch (err) {
+            setErrMsg("Erreur lors de la connexion au serevreur");
+            console.log(err);
+          }
+        }
+      else {
+        setErrMsg("Message content should not be Void");
+        console.log(errMsg);
+      }
+    }
+    return (
     <Grid
       container
       direction="column"
@@ -32,7 +42,7 @@ const NewTwist = ({ addTwist, userId }) => {
         borderBottomColor: "divider",
         maxHeight: "20%",
       }}
-    >
+     >
       <Grid
         container
         direction="row"
@@ -64,6 +74,7 @@ const NewTwist = ({ addTwist, userId }) => {
           onClick={(e) => {
             addTwist(content);
             setContent("");
+            handleSubmit(e);
           }}
         >
           Twister

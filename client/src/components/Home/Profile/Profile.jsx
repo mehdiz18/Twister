@@ -1,47 +1,38 @@
 import { Person } from "@mui/icons-material";
 import { Avatar, Button, Grid, Typography } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ListTwist from "../Twist/ListTwist";
 import NavBar from "./NavBar";
+import axios from "axios";
 
-const Profile = () => {
-  const twists = [
-    {
-      id: 1,
-      user: {
-        name: "Mehdi",
-        surname: "ZENINE",
-      },
-      message:
-        "Aute laborum ipsum ut proident nostrud cupidatat nostrud consectetur fugiat. Id pariatur proident consectetur ipsum commodo magna excepteur non. Magna adipisicing et dolore do cupidatat consectetur cupidatat anim aute voluptate enim. Lorem exercitation ut labore Lorem cupidatat ut eiusmod anim. Velit labore elit nisi labore ullamco velit sunt consequat ipsum est cillum dolore. Id ea ullamco mollit excepteur enim amet minim aliquip ut occaecat deserunt.",
-      likesCount: 3,
-    },
-    {
-      id: 2,
-      user: {
-        name: "Diva",
-        surname: "REBECCA",
-      },
-      message:
-        "Aute laborum ipsum ut proident nostrud cupidatat nostrud consectetur fugiat. Id pariatur proident consectetur ipsum commodo magna excepteur non. Magna adipisicing et dolore do cupidatat consectetur cupidatat anim aute voluptate enim. Lorem exercitation ut labore Lorem cupidatat ut eiusmod anim. Velit labore elit nisi labore ullamco velit sunt consequat ipsum est cillum dolore. Id ea ullamco mollit excepteur enim amet minim aliquip ut occaecat deserunt.",
-      likesCount: 5,
-    },
-    {
-      id: 3,
-      user: {
-        name: "Emmanuel",
-        surname: "MACRON",
-      },
-      message:
-        "Aute laborum ipsum ut proident nostrud cupidatat nostrud consectetur fugiat. Id pariatur proident consectetur ipsum commodo magna excepteur non. Magna adipisicing et dolore do cupidatat consectetur cupidatat anim aute voluptate enim. Lorem exercitation ut labore Lorem cupidatat ut eiusmod anim. Velit labore elit nisi labore ullamco velit sunt consequat ipsum est cillum dolore. Id ea ullamco mollit excepteur enim amet minim aliquip ut occaecat deserunt.",
-      likesCount: 69,
-    },
-  ];
+const Profile = ({userId}) => {
+  const [errMsg, setErrMsg] = useState("");
+  const [twists, setTwists] = useState([]);
+  const [userName, setUserName] = useState("");
+
+  useEffect(() =>{
+    getMessages(userId);
+  }, []);
+
+  const getMessages = async(userId) =>{
+    try{
+      let response = await axios.get(
+        `http://127.0.0.1:5000/api/messages/${userId.current}`);
+      
+      let messages = response.data;
+      
+      setUserName(response.data[0].user.firstName + " " + response.data[0].user.lastName);
+      setTwists(messages);
+      } catch (err) {
+          setErrMsg("Erreur Lors de connexion au serveur");
+          console.log(err);
+      }
+  }
   const [tabValue, setTabValue] = useState(0);
   const tabs = [<ListTwist twists={twists} />, <ListTwist twists={twists} />];
   const handleTabChange = (value) => {
-    console.log(value);
+    // console.log(value);
     setTabValue(value);
   };
   return (
@@ -66,7 +57,7 @@ const Profile = () => {
           <Person sx={{ fontSize: 70 }}></Person>
         </Avatar>
         <Typography variant="h5" mt={2}>
-          Elhadi CHITER
+          {userName}
         </Typography>
         <Button variant="contained" sx={{ width: "30%" }}>
           Ajouter

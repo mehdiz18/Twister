@@ -5,57 +5,77 @@ import Welcome from "../welcome";
 import Profile from "./Profile/Profile";
 import Feed from "./Feed";
 
+import axios from "axios";
+
 const Home = ({ loggedState, logout, userId}) => {
   const [twists, setTwists] = useState([
     {
       id: 1,
       user: {
-        name: "Mehdi",
-        surname: "ZENINE",
+        firstName: "Mehdi",
+        lastName: "ZENINE",
       },
-      message:
+      content:
         "Aute laborum ipsum ut proident nostrud cupidatat nostrud consectetur fugiat. Id pariatur proident consectetur ipsum commodo magna excepteur non. Magna adipisicing et dolore do cupidatat consectetur cupidatat anim aute voluptate enim. Lorem exercitation ut labore Lorem cupidatat ut eiusmod anim. Velit labore elit nisi labore ullamco velit sunt consequat ipsum est cillum dolore. Id ea ullamco mollit excepteur enim amet minim aliquip ut occaecat deserunt.",
       likesCount: 3,
     },
     {
       id: 2,
       user: {
-        name: "Diva",
-        surname: "REBECCA",
+        firstName: "Diva",
+        lastName: "REBECCA",
       },
-      message:
+      content:
         "Aute laborum ipsum ut proident nostrud cupidatat nostrud consectetur fugiat. Id pariatur proident consectetur ipsum commodo magna excepteur non. Magna adipisicing et dolore do cupidatat consectetur cupidatat anim aute voluptate enim. Lorem exercitation ut labore Lorem cupidatat ut eiusmod anim. Velit labore elit nisi labore ullamco velit sunt consequat ipsum est cillum dolore. Id ea ullamco mollit excepteur enim amet minim aliquip ut occaecat deserunt.",
       likesCount: 5,
     },
     {
       id: 3,
       user: {
-        name: "Emmanuel",
-        surname: "MACRON",
+        firstName: "Emmanuel",
+        lastName: "MACRON",
       },
-      message:
+      content:
         "Aute laborum ipsum ut proident nostrud cupidatat nostrud consectetur fugiat. Id pariatur proident consectetur ipsum commodo magna excepteur non. Magna adipisicing et dolore do cupidatat consectetur cupidatat anim aute voluptate enim. Lorem exercitation ut labore Lorem cupidatat ut eiusmod anim. Velit labore elit nisi labore ullamco velit sunt consequat ipsum est cillum dolore. Id ea ullamco mollit excepteur enim amet minim aliquip ut occaecat deserunt.",
       likesCount: 69,
     },
   ]);
-  const addTwist = (content) => {
-    let newItem = {
-      id: Math.floor(Math.random() * 1000) + 1,
-      message: content,
-      user: {
-        name: "Hadi",
-        surname: "CHITER",
-      },
-      likesCount: 0,
-    };
-    setTwists([newItem, ...twists]);
+
+  const [errMsg, setErrMsg] = useState("");
+
+  const addTwist = async(content) => {
+    
+
+    if (content !== "") {
+      try {
+        let response = await axios.get(
+          `http://127.0.0.1:5000/api/users/${userId.current}`);
+        
+        let newItem = {
+          message: content,
+          user: {
+            firstName: response.data.firstName,
+            lastName: response.data.lastName,
+          },
+          likesCount : 0,
+        };
+        setTwists([newItem, ...twists]);
+      } catch (err) {
+          setErrMsg("Erreur Lors de connexion au serveur 0");
+          console.log(err);
+      }
+    }
+    else {
+      setErrMsg("Message content should not be Void");
+      console.log(errMsg);
+    }
   };
   const [index, setIndex] = useState(0);
   const handleIndexChange = (index) => {
     setIndex(index);
   };
-
-  const views = [<Feed twists={twists} addTwist={addTwist} userId = {userId}/>, <Profile />];
+  
+  const views = [<Feed twists={twists} addTwist={addTwist} userId = {userId}/>, <Profile userId = {userId}/>];
 
   return loggedState ? (
     <Grid

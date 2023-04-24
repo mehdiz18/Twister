@@ -3,11 +3,11 @@ const Message = require("./Message");
 const asyncHandler = require("express-async-handler");
 
 const getListMessage = asyncHandler(async (req, res) => {
-  if (!req.body.userId) {
+  if (!req.params.id) {
     res.status(400);
     throw new Error("Please verify args");
   }
-  const messages = await Message.find({ user: req.body.userId }).populate(
+  const messages = await Message.find({ user: req.params.id }).populate(
     "user",
     ["id", "email", "firstName", "lastName"]
   );
