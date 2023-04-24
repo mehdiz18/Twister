@@ -24,7 +24,7 @@ const useForgotPassword = () => {
   };
 
   const modifyPassword = async (changeLoginView) => {
-    if (email && password && confirmPassword) {
+    if (email && password === confirmPassword) {
       try {
         let response = await axios.put("http://127.0.0.1:5000/api/users", {
           email: email,
@@ -39,6 +39,8 @@ const useForgotPassword = () => {
       } catch (error) {
         setLoginError(true);
       }
+    } else {
+      setSamePasword(false);
     }
   };
 

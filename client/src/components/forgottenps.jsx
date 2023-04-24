@@ -61,6 +61,11 @@ const Forgotten = ({ changeLoginView }) => {
             Utilisateur Inexistant
           </Typography>
         )}
+        {!verifyPassword && (
+          <Typography variant="subtitle2" color="red" mt={2}>
+            Mot de passe incorrect
+          </Typography>
+        )}
         <Button
           variant="contained"
           size="large"
