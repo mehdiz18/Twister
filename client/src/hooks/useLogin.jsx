@@ -9,8 +9,7 @@ const useLogin = () => {
 
   const changeLoginState = async (event) => {
     event.preventDefault();
-    let regexp = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    if (regexp.test(email) && password) {
+    if (email && password) {
       try {
         let response = await axios.post(
           "http://127.0.0.1:5000/api/users/login",
@@ -24,8 +23,9 @@ const useLogin = () => {
       } catch (error) {
         setLoginError(true);
         setPassword("");
-        console.log(error);
       }
+    } else {
+      setLoginError(true);
     }
   };
   const logout = () => {

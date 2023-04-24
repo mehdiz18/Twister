@@ -19,6 +19,7 @@ const Login = ({ changeRegisterView, changeForgotView, changeWelcomeView }) => {
     loginError,
     userId,
   ] = useLogin();
+
   let inputStyle = {
     border: loginError ? "2px solid #f06e60" : "none",
   };
