@@ -67,6 +67,7 @@ const Signup = ({ changeWelcomeView, changeLoginView }) => {
       return;
     }
     setSuccess(true);
+    changeLoginView();
 
   }
 

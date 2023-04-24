@@ -1,7 +1,23 @@
 import { Grid, Avatar, Input, Button } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 import { useState } from "react";
-const NewTwist = ({ addTwist }) => {
+
+const handleSubmit = async(event) =>{
+  // event.preventDefault();
+
+  // try {
+  //   let response = await axios.post(
+  //     "http://127.0.0.1:5000/api/users", 
+  //     {content : content, userId : userId});
+  //   console.log(response.data);
+  //   setSuccess(!success);
+  //   // clear input fields
+  // } catch (err) {
+  // }
+
+}
+
+const NewTwist = ({ addTwist, userId }) => {
   const [content, setContent] = useState("");
   return (
     <Grid
@@ -42,6 +58,7 @@ const NewTwist = ({ addTwist }) => {
       </Grid>
       <Grid item alignSelf="flex-end">
         <Button
+          type="submit"
           variant="contained"
           size="medium"
           onClick={(e) => {

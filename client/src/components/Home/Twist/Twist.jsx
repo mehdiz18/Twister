@@ -11,10 +11,22 @@ import { useState } from "react";
 const Twist = ({ content }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(content.likesCount);
+  
   const toggleLike = () => {
     !isLiked ? setLikesCount(likesCount + 1) : setLikesCount(likesCount - 1);
     setIsLiked(!isLiked);
   };
+
+  const addComment = ({ messageId, comment }) =>{
+
+    // let liste = document.getElementById("listecommissions");
+    // let elt = document.createElement("li");
+    // let newText = document.createTextNode("texte");
+    // elt.appendChild(newText);
+    // liste.appendChild(elt);    
+    console.log("Hello");
+    
+  }
   return (
     <Grid
       container
@@ -40,7 +52,10 @@ const Twist = ({ content }) => {
         </Grid>
         <Grid item container>
           <Grid item>
-            <IconButton disableRipple>
+            <IconButton 
+              disableRipple
+              onClick={addComment}
+              >
               <ChatBubbleOutline />
             </IconButton>
           </Grid>

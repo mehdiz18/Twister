@@ -26,7 +26,7 @@ const Login = ({ changeRegisterView, changeForgotView, changeWelcomeView }) => {
   return (
     <Grid container justifyContent="center">
       {loginState ? (
-        <Home logout={logout} loggedState={loginState} />
+        <Home logout={logout} loggedState={loginState} userId={userId} />
       ) : (
         <Grid container item mt={2}>
           <Link

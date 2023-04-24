@@ -4,7 +4,8 @@ import { useState } from "react";
 import Welcome from "../welcome";
 import Profile from "./Profile/Profile";
 import Feed from "./Feed";
-const Home = ({ loggedState, logout }) => {
+
+const Home = ({ loggedState, logout, userId}) => {
   const [twists, setTwists] = useState([
     {
       id: 1,
@@ -54,7 +55,7 @@ const Home = ({ loggedState, logout }) => {
     setIndex(index);
   };
 
-  const views = [<Feed twists={twists} addTwist={addTwist} />, <Profile />];
+  const views = [<Feed twists={twists} addTwist={addTwist} userId = {userId}/>, <Profile />];
 
   return loggedState ? (
     <Grid
