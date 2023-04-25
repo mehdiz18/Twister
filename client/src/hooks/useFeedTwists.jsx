@@ -3,6 +3,34 @@ import { useEffect, useState } from "react";
 
 const useFeedTwists = (userId) => {
   let [twists, setTwists] = useState([]);
+  const [errMsg, setErrMsg] = useState("");
+
+  const addTwist = async (content) => {
+    if (content !== "") {
+      try {
+        let response = await axios.get(
+          `http://127.0.0.1:5000/api/users/${userId.current}`
+        );
+
+        let newItem = {
+          content: content,
+          user: {
+            firstName: response.data.firstName,
+            lastName: response.data.lastName,
+          },
+          likes: 0,
+        };
+        setTwists([newItem, ...twists]);
+        console.log(twists);
+      } catch (err) {
+        setErrMsg("Erreur Lors de connexion au serveur 0");
+        console.log(err);
+      }
+    } else {
+      setErrMsg("Message content should not be Void");
+      console.log(errMsg);
+    }
+  };
 
   const fetchMessages = async (userId) => {
     let messages = await axios.get(
@@ -34,7 +62,7 @@ const useFeedTwists = (userId) => {
     })();
   }, []);
 
-  return twists;
+  return [twists, addTwist];
 };
 
 export default useFeedTwists;
