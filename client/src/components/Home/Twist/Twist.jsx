@@ -6,7 +6,7 @@ import {
 import { Avatar, IconButton, Typography } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Twist = ({ message, userId}) => {
@@ -38,12 +38,33 @@ const Twist = ({ message, userId}) => {
       console.log(err);
     }
     setLikesCount(likes - 1);
-  };
+  }; 
+
+  const alreadyLiked = (id) => {
+
+    try {
+     
+      return axios.get(`http://127.0.0.1:5000/api/messages/${id}/infos`).then((response)=>{
+        return response.data.Likers.includes(userId.current);
+        
+      });
+    } catch (err) {
+      setErrMsg("Erreur Lors de connexion au serveur");
+      console.log(err);
+    }
+    
+  }
 
   const toggleLike = async (id) => {
     !isLiked ? likeTwist(id) : dislikeTwist(id);
     setIsLiked(!isLiked);
   };
+
+  useEffect(()=>{
+    alreadyLiked(message._id).then((exists)=>{
+      setIsLiked(exists);
+    });
+  }, []);
 
   const addComment = ({ messageId, comment }) => {
     // let liste = document.getElementById("listecommissions");
@@ -53,6 +74,7 @@ const Twist = ({ message, userId}) => {
     // liste.appendChild(elt);
     console.log("Hello");
   };
+
   return (
     <Grid
       container
