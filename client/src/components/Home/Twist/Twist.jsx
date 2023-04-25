@@ -10,10 +10,10 @@ import { useState } from "react";
 
 const Twist = ({ message }) => {
   const [isLiked, setIsLiked] = useState(false);
-  const [likesCount, setLikesCount] = useState(message.likes);
+  const [likes, setLikesCount] = useState(message.likes);
 
   const toggleLike = () => {
-    !isLiked ? setLikesCount(likesCount + 1) : setLikesCount(likesCount - 1);
+    !isLiked ? setLikesCount(likes + 1) : setLikesCount(likes - 1);
     setIsLiked(!isLiked);
   };
 
@@ -42,7 +42,6 @@ const Twist = ({ message }) => {
       <Grid item container direction="column" width={0.9}>
         <Grid item>
           <Typography variant="subtitle2">{`${message.user.firstName} ${message.user.lastName}`}</Typography>
-          <Typography variant="subtitle2">{`${message.user.firstName} ${message.user.lastName}`}</Typography>
         </Grid>
         <Grid item>
           <Typography variant="body2" style={{ wordBreak: "break-word" }}>
@@ -63,7 +62,7 @@ const Twist = ({ message }) => {
               onClick={toggleLike}
             >
               {isLiked ? <Favorite color="error" /> : <FavoriteBorder />}
-              <Typography ml={1}>{likesCount}</Typography>
+              <Typography ml={1}>{likes}</Typography>
             </IconButton>
           </Grid>
         </Grid>

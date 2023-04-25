@@ -19,6 +19,9 @@ const getListMessage = asyncHandler(async (req, res) => {
 });
 
 const postMessage = asyncHandler(async (req, res) => {
+
+  console.log("je suis dans le serveru");
+
   if (!req.body.content || !req.body.userId) {
     res.status(400);
     throw new Error("Please provide a content and a userId");

@@ -56,9 +56,9 @@ const Home = ({ loggedState, logout, userId }) => {
             firstName: response.data.firstName,
             lastName: response.data.lastName,
           },
-          likesCount: 0,
+          likes: 0,
         };
-        console.log("Hemoud");
+      
         setTwists([newItem, ...twists]);
         console.log(twists);
       } catch (err) {
