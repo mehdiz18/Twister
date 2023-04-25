@@ -35,7 +35,6 @@ const SideBar = ({ disconnect, changeView }) => {
             className="sideBarButton"
             startIcon={<Home />}
             label="Accueil"
-            iconPosition="start"
             disableRipple
             disableTouchRipple
             disableFocusRipple

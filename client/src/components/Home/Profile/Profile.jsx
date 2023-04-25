@@ -38,7 +38,7 @@ const Profile = ({ userId }) => {
     }
   };
   const [tabValue, setTabValue] = useState(0);
-  const tabs = [<ListTwist twists={twists} />, <ListTwist twists={twists} />];
+  const tabs = [<ListTwist twists={twists} userId={userId}/>, <ListTwist twists={twists} />];
   const handleTabChange = (value) => {
     setTabValue(value);
   };

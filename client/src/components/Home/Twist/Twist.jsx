@@ -9,7 +9,7 @@ import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import axios from "axios";
 
-const Twist = ({ message, userId }) => {
+const Twist = ({ message, userId}) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikesCount] = useState(message.likes);
   const [errMsg, setErrMsg] = useState("");
