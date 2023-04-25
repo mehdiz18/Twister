@@ -1,7 +1,11 @@
 import {
   ChatBubbleOutline,
+  CreateOutlined,
+  Delete,
+  DeleteOutline,
   Favorite,
   FavoriteBorder,
+  Update,
 } from "@mui/icons-material";
 import { Avatar, IconButton, Typography } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
@@ -10,11 +14,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import axiosConfig from "../../../hooks/consts";
 
-const Twist = ({ message, userId }) => {
+const Twist = ({ message, userId, deleteTwist }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikesCount] = useState(message.likes);
   const [errMsg, setErrMsg] = useState("");
-
   const likeTwist = async (id) => {
     try {
       await axios.put(
@@ -47,30 +50,28 @@ const Twist = ({ message, userId }) => {
       console.log(err);
     }
     setLikesCount(likes - 1);
-  }; 
+  };
 
   const alreadyLiked = (id) => {
-
     try {
-     
-      return axios.get(`http://127.0.0.1:5000/api/messages/${id}/infos`).then((response)=>{
-        return response.data.Likers.includes(userId.current);
-        
-      });
+      return axios
+        .get(`http://127.0.0.1:5000/api/messages/${id}/infos`)
+        .then((response) => {
+          return response.data.Likers.includes(userId.current);
+        });
     } catch (err) {
       setErrMsg("Erreur Lors de connexion au serveur");
       console.log(err);
     }
-    
-  }
+  };
 
   const toggleLike = async (id) => {
     !isLiked ? likeTwist(id) : dislikeTwist(id);
     setIsLiked(!isLiked);
   };
 
-  useEffect(()=>{
-    alreadyLiked(message._id).then((exists)=>{
+  useEffect(() => {
+    alreadyLiked(message._id).then((exists) => {
       setIsLiked(exists);
     });
   }, []);
@@ -115,9 +116,6 @@ const Twist = ({ message, userId }) => {
           </Grid>
           <Grid item>
             <IconButton
-              disableRipple
-              disableTouchRipple
-              disableFocusRipple
               onClick={() => {
                 toggleLike(message._id);
               }}
@@ -126,6 +124,29 @@ const Twist = ({ message, userId }) => {
               <Typography ml={1}>{likes}</Typography>
             </IconButton>
           </Grid>
+          <Grid item>
+            <IconButton
+              disableRipple
+              onClick={addComment}
+              aria-labelledby="azul"
+            >
+              <CreateOutlined />
+            </IconButton>
+          </Grid>
+          {deleteTwist ? (
+            <Grid item>
+              <IconButton
+                disableRipple
+                onClick={() => {
+                  deleteTwist(message._id);
+                }}
+              >
+                <DeleteOutline />
+              </IconButton>
+            </Grid>
+          ) : (
+            <></>
+          )}
         </Grid>
       </Grid>
     </Grid>

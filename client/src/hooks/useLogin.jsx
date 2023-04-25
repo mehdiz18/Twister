@@ -28,7 +28,9 @@ const useLogin = () => {
       setLoginError(true);
     }
   };
-  const logout = () => {
+  const logout = async () => {
+    // let response = await axios.delete("http://127.0.0.1:5000/api/users/logout");
+    // console.log(response.data);
     setLoginState(false);
   };
   const changeEmail = (event) => {

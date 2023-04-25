@@ -48,9 +48,37 @@ const Profile = ({ userId }) => {
       console.log(err);
     }
   };
+  const deleteTwist = async (messageId) => {
+    try {
+      await axios.delete(`http://127.0.0.1:5000/api/messages/${messageId}`);
+      setTwists(
+        twists.filter(function (twist) {
+          return twist._id !== messageId;
+        })
+      );
+    } catch (err) {
+      setErrMsg("Erreur Lors de connexion au serveur");
+      console.log(err);
+    }
+  };
+
+  // const updateTwist = async (messageId) => {
+  //   try {
+  //     await axios.put(`http://127.0.0.1:5000/api/messages/${messageId}`);
+  //     setTwists(
+  //       twists.filter(function (twist) {
+  //         return twist._id !== messageId;
+  //       })
+  //     );
+  //   } catch (err) {
+  //     setErrMsg("Erreur Lors de connexion au serveur");
+  //     console.log(err);
+  //   }
+  // };
+
   const [tabValue, setTabValue] = useState(0);
   const tabs = [
-    <ListTwist twists={twists} userId={userId} />,
+    <ListTwist twists={twists} userId={userId} deleteTwist={deleteTwist} />,
     <ListFriends friends={friends} />,
   ];
   const handleTabChange = (value) => {
