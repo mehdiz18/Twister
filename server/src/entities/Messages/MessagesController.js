@@ -19,12 +19,14 @@ const getListMessage = asyncHandler(async (req, res) => {
 });
 
 const postMessage = asyncHandler(async (req, res) => {
-
-  console.log("je suis dans le serveru");
-
-  if (!req.body.content || !req.body.userId) {
+  if (!req.body.content) {
+    console.log(req.body.content);
     res.status(400);
-    throw new Error("Please provide a content and a userId");
+    throw new Error("Please provide a content");
+  } else if (!req.body.userId) {
+    console.log(req.body.content);
+    res.status(400);
+    throw new Error("Please provide a userId");
   }
   const message = await Message.create({
     content: req.body.content,
