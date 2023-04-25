@@ -95,6 +95,7 @@ const updateMessageInfos = asyncHandler(async (req, res) => {
       message: "message infos updated successfully",
       msg: messageUpdated,
     });
+    console.log(messageUpdated);
   } 
   else {
     let messageUpdated = await Message.findByIdAndUpdate(
