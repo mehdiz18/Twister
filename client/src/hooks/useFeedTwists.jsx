@@ -5,7 +5,7 @@ const useFeedTwists = (userId) => {
   let [twists, setTwists] = useState([]);
   const [errMsg, setErrMsg] = useState("");
 
-  const addTwist = async (twistId, content) => {
+  const addTwist = async (content) => {
     console.log(content);
     if (content) {
       try {
@@ -17,12 +17,16 @@ const useFeedTwists = (userId) => {
           },
           axiosConfig
         );
+        let user = await axios.get(
+          `http://127.0.0.1:5000/api/users/${userId.current}`
+        );
+
         let newItem = {
           _id: response.data._id,
           content: content,
           user: {
-            firstName: response.data.user.firstName,
-            lastName: response.data.user.lastName,
+            firstName: user.data.firstName,
+            lastName: user.data.lastName,
           },
           likes: 0,
         };

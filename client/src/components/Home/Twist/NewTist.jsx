@@ -7,9 +7,8 @@ import axios from "axios";
 const NewTwist = ({ addTwist, userId }) => {
   const [errMsg, setErrMsg] = useState("");
   const [initials, setInitials] = useState("");
-  const [twistId, setTwistId] = useState();
-  let messageContent = "";
-  const [content, setContent] = useState(messageContent);
+  
+  const [content, setContent] = useState("");
   useEffect(() => {
     getInitials(userId);
   }, [userId]);
@@ -58,8 +57,7 @@ const NewTwist = ({ addTwist, userId }) => {
           multiline
           value={content}
           onChange={(e) => {
-            messageContent = e.target.value;
-            setContent(messageContent);
+            setContent(e.target.value);
           }}
         />
       </Grid>
@@ -69,7 +67,7 @@ const NewTwist = ({ addTwist, userId }) => {
           variant="contained"
           size="medium"
           onClick={(e) => {
-            addTwist(messageContent);
+            addTwist(content);
           }}
         >
           Twister
