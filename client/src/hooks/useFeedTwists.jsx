@@ -69,7 +69,7 @@ const useFeedTwists = (userId) => {
         }
       } catch (error) {}
     })();
-  }, []);
+  }, [userId]);
 
   return [twists, addTwist];
 };
