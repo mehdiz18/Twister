@@ -8,6 +8,7 @@ import { deepPurple } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import axiosConfig from "../../../hooks/consts";
 
 const Twist = ({ message, userId }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -16,10 +17,14 @@ const Twist = ({ message, userId }) => {
 
   const likeTwist = async (id) => {
     try {
-      await axios.put(`http://127.0.0.1:5000/api/messages/${id}/infos`, {
-        user: userId.current,
-        update: "true",
-      });
+      await axios.put(
+        `http://127.0.0.1:5000/api/messages/${id}/infos`,
+        {
+          user: userId.current,
+          update: "true",
+        },
+        axiosConfig
+      );
     } catch (err) {
       setErrMsg("Erreur Lors de connexion au serveur");
       console.log(err);
@@ -29,10 +34,14 @@ const Twist = ({ message, userId }) => {
 
   const dislikeTwist = async (id) => {
     try {
-      await axios.put(`http://127.0.0.1:5000/api/messages/${id}/infos`, {
-        user: userId.current,
-        update: "false",
-      });
+      await axios.put(
+        `http://127.0.0.1:5000/api/messages/${id}/infos`,
+        {
+          user: userId.current,
+          update: "false",
+        },
+        axiosConfig
+      );
     } catch (err) {
       setErrMsg("Erreur Lors de connexion au serveur");
       console.log(err);
