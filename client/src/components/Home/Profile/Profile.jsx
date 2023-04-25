@@ -6,30 +6,14 @@ import ListTwist from "../Twist/ListTwist";
 import ListFriends from "../Friends/ListFriends";
 import NavBar from "./NavBar";
 import axios from "axios";
+import useFriends from "../../../hooks/useFriends";
 
 const Profile = ({ userId }) => {
   const [errMsg, setErrMsg] = useState("");
   const [twists, setTwists] = useState([]);
   const [userName, setUserName] = useState("");
-
-  let friends = [
-    {
-      firstName : "Chichi",
-      lastName : "Lmeqlcha",
-    }, 
-    {
-      firstName : "Yasmine",
-      lastName : "Meryula",
-    },
-    {
-      firstName : "Mehdi",
-      lastName : "NechtiLeqlawi",
-    },
-    {
-      firstName : "Rebecca",
-      lastName : "Diva",
-    },   
-  ]
+  const [friendsCount, setFriendsCount] = useState(0);
+  let [friends] = useFriends(userId);
   useEffect(() => {
     (async () => {
       let response = await axios.get(
@@ -43,6 +27,14 @@ const Profile = ({ userId }) => {
     getMessages(userId);
   }, [userId]);
 
+  useEffect(() => {
+    (async () => {
+      let response = await axios.get(
+        `http://127.0.0.1:5000/api/friends/${userId.current}`
+      );
+      setFriendsCount(response.data.length);
+    })();
+  }, [userId]);
   const getMessages = async (userId) => {
     try {
       let response = await axios.get(
@@ -57,7 +49,10 @@ const Profile = ({ userId }) => {
     }
   };
   const [tabValue, setTabValue] = useState(0);
-  const tabs = [<ListTwist twists={twists} userId={userId}/>, <ListFriends friends={friends}/>];
+  const tabs = [
+    <ListTwist twists={twists} userId={userId} />,
+    <ListFriends friends={friends} />,
+  ];
   const handleTabChange = (value) => {
     setTabValue(value);
   };
@@ -74,7 +69,7 @@ const Profile = ({ userId }) => {
           Ajouter
         </Button>
         <Grid alignSelf="flex-start" item container pl={4}>
-          <Typography variant="h6">999 Amis</Typography>
+          <Typography variant="h6">{friendsCount} Amis</Typography>
         </Grid>
       </Grid>
       <Grid item container width={1}>
