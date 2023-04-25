@@ -11,6 +11,7 @@ const NavBar = ({ handleChange }) => {
     <Tabs value={tabValue} onChange={handleTabChange} sx={{ width: 1 }}>
       <Tab label="Tweets" />
       <Tab label="Contacts" />
+      <Tab label="A propos de moi"/>
     </Tabs>
   );
 };

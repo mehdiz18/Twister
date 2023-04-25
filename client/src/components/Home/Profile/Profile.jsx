@@ -3,6 +3,7 @@ import { Avatar, Button, Grid, Typography } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 import { useEffect, useState } from "react";
 import ListTwist from "../Twist/ListTwist";
+import ListFriends from "../Friends/ListFriends";
 import NavBar from "./NavBar";
 import axios from "axios";
 
@@ -11,6 +12,24 @@ const Profile = ({ userId }) => {
   const [twists, setTwists] = useState([]);
   const [userName, setUserName] = useState("");
 
+  let friends = [
+    {
+      firstName : "Chichi",
+      lastName : "Lmeqlcha",
+    }, 
+    {
+      firstName : "Yasmine",
+      lastName : "Meryula",
+    },
+    {
+      firstName : "Mehdi",
+      lastName : "NechtiLeqlawi",
+    },
+    {
+      firstName : "Rebecca",
+      lastName : "Diva",
+    },   
+  ]
   useEffect(() => {
     (async () => {
       let response = await axios.get(
@@ -38,7 +57,7 @@ const Profile = ({ userId }) => {
     }
   };
   const [tabValue, setTabValue] = useState(0);
-  const tabs = [<ListTwist twists={twists} userId={userId}/>, <ListTwist twists={twists} />];
+  const tabs = [<ListTwist twists={twists} userId={userId}/>, <ListFriends friends={friends}/>];
   const handleTabChange = (value) => {
     setTabValue(value);
   };
