@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Grid, Avatar, Input, Button } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 import { useEffect, useState } from "react";

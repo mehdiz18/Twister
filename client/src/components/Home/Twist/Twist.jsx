@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   ChatBubbleOutline,
   CreateOutlined,
@@ -7,17 +8,34 @@ import {
   FavoriteBorder,
   Update,
 } from "@mui/icons-material";
-import { Avatar, IconButton, Typography } from "@mui/material";
+import {
+  Avatar,
+  DialogTitle,
+  Drawer,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import axiosConfig from "../../../hooks/consts";
+import ModifyDialog from "./ModifyDialog";
 
-const Twist = ({ message, userId, deleteTwist }) => {
+const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikesCount] = useState(message.likes);
   const [errMsg, setErrMsg] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const handleOpenDialog = () => {
+    setOpen(true);
+  };
+  const handleCloseDialog = () => {
+    setOpen(false);
+  };
+
   const likeTwist = async (id) => {
     try {
       await axios.put(
@@ -114,25 +132,35 @@ const Twist = ({ message, userId, deleteTwist }) => {
               <ChatBubbleOutline />
             </IconButton>
           </Grid>
-          <Grid item>
-            <IconButton
-              onClick={() => {
-                toggleLike(message._id);
-              }}
-            >
-              {isLiked ? <Favorite color="error" /> : <FavoriteBorder />}
-              <Typography ml={1}>{likes}</Typography>
-            </IconButton>
-          </Grid>
-          <Grid item>
-            <IconButton
-              disableRipple
-              onClick={addComment}
-              aria-labelledby="azul"
-            >
-              <CreateOutlined />
-            </IconButton>
-          </Grid>
+          {!modifyTwist && !deleteTwist ? (
+            <Grid item>
+              <IconButton
+                onClick={() => {
+                  toggleLike(message._id);
+                }}
+              >
+                {isLiked ? <Favorite color="error" /> : <FavoriteBorder />}
+                <Typography ml={1}>{likes}</Typography>
+              </IconButton>
+            </Grid>
+          ) : (
+            <></>
+          )}
+          {modifyTwist ? (
+            <Grid item>
+              <IconButton disableRipple onClick={handleOpenDialog}>
+                <CreateOutlined />
+              </IconButton>
+              <ModifyDialog
+                message={message}
+                open={open}
+                handleClose={handleCloseDialog}
+                modifyCallback={modifyTwist}
+              ></ModifyDialog>
+            </Grid>
+          ) : (
+            <></>
+          )}
           {deleteTwist ? (
             <Grid item>
               <IconButton

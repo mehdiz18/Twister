@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Person } from "@mui/icons-material";
 import { Avatar, Button, Grid, Typography } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
@@ -7,6 +8,7 @@ import ListFriends from "../Friends/ListFriends";
 import NavBar from "./NavBar";
 import axios from "axios";
 import useFriends from "../../../hooks/useFriends";
+import axiosConfig from "../../../hooks/consts";
 
 const Profile = ({ userId }) => {
   const [errMsg, setErrMsg] = useState("");
@@ -62,23 +64,35 @@ const Profile = ({ userId }) => {
     }
   };
 
-  // const updateTwist = async (messageId) => {
-  //   try {
-  //     await axios.put(`http://127.0.0.1:5000/api/messages/${messageId}`);
-  //     setTwists(
-  //       twists.filter(function (twist) {
-  //         return twist._id !== messageId;
-  //       })
-  //     );
-  //   } catch (err) {
-  //     setErrMsg("Erreur Lors de connexion au serveur");
-  //     console.log(err);
-  //   }
-  // };
+  const modifyTwist = async (messageId, newContent) => {
+    await axios.put(
+      `http://127.0.0.1:5000/api/messages/${messageId}`,
+      { content: newContent },
+      axiosConfig
+    );
+    setTwists(
+      twists.map(function (twist) {
+        return twist._id === messageId
+          ? {
+              _id: twist._id,
+              content: newContent,
+              user: twist.user,
+              likes: twist.likes,
+              likers: twist.likers,
+            }
+          : twist;
+      })
+    );
+  };
 
   const [tabValue, setTabValue] = useState(0);
   const tabs = [
-    <ListTwist twists={twists} userId={userId} deleteTwist={deleteTwist} />,
+    <ListTwist
+      twists={twists}
+      userId={userId}
+      deleteTwist={deleteTwist}
+      modifyTwist={modifyTwist}
+    />,
     <ListFriends friends={friends} />,
   ];
   const handleTabChange = (value) => {

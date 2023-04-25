@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import Twist from "./Twist";
 // import empty from "../../../img/empty-folder.png";
-const ListTwist = ({ twists, userId, deleteTwist }) => {
+const ListTwist = ({ twists, userId, deleteTwist, modifyTwist }) => {
   return (
     <Grid item container direction="column">
       {twists.map((item) => {
@@ -11,6 +11,7 @@ const ListTwist = ({ twists, userId, deleteTwist }) => {
             userId={userId}
             key={item._id}
             deleteTwist={deleteTwist}
+            modifyTwist={modifyTwist}
           ></Twist>
         );
       })}
