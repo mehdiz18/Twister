@@ -14,33 +14,33 @@ const Twist = ({ message, userId }) => {
   const [likes, setLikesCount] = useState(message.likes);
   const [errMsg, setErrMsg] = useState("");
 
-  const likeTwist = async(id) => {
+  const likeTwist = async (id) => {
     try {
-      await axios.put(
-        `http://127.0.0.1:5000/api/messages/${id}/infos`
-      , { user : userId.current, update : "true"});
-
+      await axios.put(`http://127.0.0.1:5000/api/messages/${id}/infos`, {
+        user: userId.current,
+        update: "true",
+      });
     } catch (err) {
       setErrMsg("Erreur Lors de connexion au serveur");
       console.log(err);
     }
-    setLikesCount(likes + 1) ;
-  }
+    setLikesCount(likes + 1);
+  };
 
-  const dislikeTwist = async(id) => {
+  const dislikeTwist = async (id) => {
     try {
-      await axios.put(
-        `http://127.0.0.1:5000/api/messages/${id}/infos`
-      , { user : userId.current, update : "false"});
-
+      await axios.put(`http://127.0.0.1:5000/api/messages/${id}/infos`, {
+        user: userId.current,
+        update: "false",
+      });
     } catch (err) {
       setErrMsg("Erreur Lors de connexion au serveur");
       console.log(err);
     }
-    setLikesCount(likes - 1) ;
-  }
+    setLikesCount(likes - 1);
+  };
 
-  const toggleLike = async(id) => {
+  const toggleLike = async (id) => {
     !isLiked ? likeTwist(id) : dislikeTwist(id);
     setIsLiked(!isLiked);
   };
@@ -87,7 +87,9 @@ const Twist = ({ message, userId }) => {
               disableRipple
               disableTouchRipple
               disableFocusRipple
-              onClick={toggleLike(message._id)}
+              onClick={() => {
+                toggleLike(message._id);
+              }}
             >
               {isLiked ? <Favorite color="error" /> : <FavoriteBorder />}
               <Typography ml={1}>{likes}</Typography>
