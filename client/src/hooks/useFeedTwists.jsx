@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import axiosConfig from "./consts";
 const useFeedTwists = (userId) => {
   let [twists, setTwists] = useState([]);
   const [errMsg, setErrMsg] = useState("");
@@ -8,23 +8,24 @@ const useFeedTwists = (userId) => {
   const addTwist = async (content) => {
     if (content !== "") {
       try {
-        let response = await axios.get(
-          `http://127.0.0.1:5000/api/users/${userId.current}`
-        );
-
         let newItem = {
           content: content,
-          user: {
-            firstName: response.data.firstName,
-            lastName: response.data.lastName,
-          },
+          user: userId.current,
           likes: 0,
         };
+        console.log(content);
+        let response = await axios.post(
+          "http://127.0.0.1:5000/api/messages",
+          {
+            content: content,
+            userId: userId.current,
+          },
+          axiosConfig
+        );
         setTwists([newItem, ...twists]);
-        console.log(twists);
       } catch (err) {
         setErrMsg("Erreur Lors de connexion au serveur 0");
-        console.log(err);
+        // console.log(err);
       }
     } else {
       setErrMsg("Message content should not be Void");

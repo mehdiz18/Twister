@@ -12,8 +12,17 @@ const Profile = ({ userId }) => {
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
+    (async () => {
+      let response = await axios.get(
+        `http://127.0.0.1:5000/api/users/${userId.current}`
+      );
+      setUserName(response.data.firstName + " " + response.data.lastName);
+    })();
+  }, [userId]);
+
+  useEffect(() => {
     getMessages(userId);
-  }, []);
+  }, [userId]);
 
   const getMessages = async (userId) => {
     try {
@@ -22,10 +31,6 @@ const Profile = ({ userId }) => {
       );
 
       let messages = response.data;
-
-      setUserName(
-        response.data[0].user.firstName + " " + response.data[0].user.lastName
-      );
       setTwists(messages);
     } catch (err) {
       setErrMsg("Erreur Lors de connexion au serveur");
@@ -35,27 +40,11 @@ const Profile = ({ userId }) => {
   const [tabValue, setTabValue] = useState(0);
   const tabs = [<ListTwist twists={twists} />, <ListTwist twists={twists} />];
   const handleTabChange = (value) => {
-    // console.log(value);
     setTabValue(value);
   };
   return (
-    <Grid
-      container
-      alignItems="center"
-      direction="column"
-      sx={{
-        width: "100%",
-        height: "100%",
-      }}
-      pt={3}
-    >
-      <Grid
-        item
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
+    <Grid container direction="column" pt={3}>
+      <Grid item container direction="column" alignItems="center">
         <Avatar sx={{ bgcolor: deepOrange[300], width: 100, height: 100 }}>
           <Person sx={{ fontSize: 70 }}></Person>
         </Avatar>
@@ -69,8 +58,10 @@ const Profile = ({ userId }) => {
           <Typography variant="h6">999 Amis</Typography>
         </Grid>
       </Grid>
-      <Grid item container>
-        <NavBar handleChange={handleTabChange}></NavBar>
+      <Grid item container width={1}>
+        <Grid item width={1}>
+          <NavBar handleChange={handleTabChange}></NavBar>
+        </Grid>
         {tabs[tabValue]}
       </Grid>
     </Grid>

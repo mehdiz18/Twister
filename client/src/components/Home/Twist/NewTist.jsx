@@ -4,53 +4,27 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 
-
-
 const NewTwist = ({ addTwist, userId }) => {
-  
-    const [content, setContent] = useState("");
-    const [errMsg, setErrMsg] = useState("");
-    const [initials, setInitials] = useState("");
+  const [content, setContent] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [initials, setInitials] = useState("");
 
-    useEffect(() =>{
-      getInitials(userId);
-    }, []);
+  useEffect(() => {
+    getInitials(userId);
+  }, []);
 
-    const getInitials = async(userId) => {
-      try {
-        let res = await axios.get(
-          `http://127.0.0.1:5000/api/users/${userId.current}`
-        );
-        setInitials(res.data.firstName[0]+res.data.lastName[0]);
-        
-      } catch(err) {
-        setErrMsg("Erreur lors de la connexion au serevreur");
-        console.log(err);
-      }
+  const getInitials = async (userId) => {
+    try {
+      let res = await axios.get(
+        `http://127.0.0.1:5000/api/users/${userId.current}`
+      );
+      setInitials(res.data.firstName[0] + res.data.lastName[0]);
+    } catch (err) {
+      setErrMsg("Erreur lors de la connexion au serevreur");
     }
+  };
 
-    const handleSubmit = async(event) =>{
-      event.preventDefault();
-      if (content !== "") {
-        try {
-          console.log(content);
-          console.log(userId.current);
-          let response = await axios.post(
-            "http://127.0.0.1:5000/api/messages", 
-            {content : content, userId : userId.current});
-          console.log(response.data);
-        
-          } catch (err) {
-            setErrMsg("Erreur lors de la connexion au serevreur");
-            console.log(err);
-          }
-        }
-      else {
-        setErrMsg("Message content should not be Void");
-        console.log(errMsg);
-      }
-    }
-    return (
+  return (
     <Grid
       container
       direction="column"
@@ -63,7 +37,7 @@ const NewTwist = ({ addTwist, userId }) => {
         borderBottomColor: "divider",
         maxHeight: "20%",
       }}
-     >
+    >
       <Grid
         container
         direction="row"
@@ -94,8 +68,6 @@ const NewTwist = ({ addTwist, userId }) => {
           size="medium"
           onClick={(e) => {
             addTwist(content);
-            setContent("");
-            handleSubmit(e);
           }}
         >
           Twister
