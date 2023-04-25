@@ -7,13 +7,41 @@ import { Avatar, IconButton, Typography } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
 import { useState } from "react";
+import axios from "axios";
 
-const Twist = ({ message }) => {
+const Twist = ({ message, userId }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikesCount] = useState(message.likes);
+  const [errMsg, setErrMsg] = useState("");
 
-  const toggleLike = () => {
-    !isLiked ? setLikesCount(likes + 1) : setLikesCount(likes - 1);
+  const likeTwist = async(id) => {
+    try {
+      await axios.put(
+        `http://127.0.0.1:5000/api/messages/${id}/infos`
+      , { user : userId.current, update : "true"});
+
+    } catch (err) {
+      setErrMsg("Erreur Lors de connexion au serveur");
+      console.log(err);
+    }
+    setLikesCount(likes + 1) ;
+  }
+
+  const dislikeTwist = async(id) => {
+    try {
+      await axios.put(
+        `http://127.0.0.1:5000/api/messages/${id}/infos`
+      , { user : userId.current, update : "false"});
+
+    } catch (err) {
+      setErrMsg("Erreur Lors de connexion au serveur");
+      console.log(err);
+    }
+    setLikesCount(likes - 1) ;
+  }
+
+  const toggleLike = async(id) => {
+    !isLiked ? likeTwist(id) : dislikeTwist(id);
     setIsLiked(!isLiked);
   };
 
@@ -59,7 +87,7 @@ const Twist = ({ message }) => {
               disableRipple
               disableTouchRipple
               disableFocusRipple
-              onClick={toggleLike}
+              onClick={toggleLike(message._id)}
             >
               {isLiked ? <Favorite color="error" /> : <FavoriteBorder />}
               <Typography ml={1}>{likes}</Typography>

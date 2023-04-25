@@ -5,9 +5,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const NewTwist = ({ addTwist, userId }) => {
-  const [content, setContent] = useState("");
-  const [errMsg, setErrMsg] = useState("");
-  const [initials, setInitials] = useState("");
+  
+    const [content, setContent] = useState("");
+    const [errMsg, setErrMsg] = useState("");
+    const [initials, setInitials] = useState("");
+    const [twistId, setTwistId] = useState();
 
   useEffect(() => {
     getInitials(userId);
@@ -68,6 +70,8 @@ const NewTwist = ({ addTwist, userId }) => {
           size="medium"
           onClick={(e) => {
             addTwist(content);
+            setContent("");
+            handleSubmit(e);
           }}
         >
           Twister

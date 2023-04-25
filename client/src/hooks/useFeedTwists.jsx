@@ -5,10 +5,11 @@ const useFeedTwists = (userId) => {
   let [twists, setTwists] = useState([]);
   const [errMsg, setErrMsg] = useState("");
 
-  const addTwist = async (content) => {
+  const addTwist = async (twistId, content) => {
     if (content !== "") {
       try {
         let newItem = {
+          _id : twistId,
           content: content,
           user: userId.current,
           likes: 0,

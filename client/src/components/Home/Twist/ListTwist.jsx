@@ -5,7 +5,7 @@ const ListTwist = ({ twists }) => {
   return (
     <Grid item container direction="column">
       {twists.map((item) => {
-        return <Twist message={item} key={item._id}></Twist>;
+        return <Twist message={item} key={item._id} userId={userId}></Twist>;
       })}
     </Grid>
   );
