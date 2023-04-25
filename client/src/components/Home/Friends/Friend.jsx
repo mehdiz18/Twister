@@ -1,13 +1,27 @@
 import { Avatar, IconButton, Typography } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Friend = ({ friend }) => {
   const [nbPosts, setnbPosts] = useState(0);
   const [nbFriends, setnbFriends] = useState(0);
   const [errMsg, setErrMsg] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      let response = await axios.get(
+        `http://127.0.0.1:5000/api/friends/${friend._id}`
+      );
+      setnbFriends(response.data.length);
+
+      let response1 = await axios.get(
+        `http://127.0.0.1:5000/api/messages/${friend._id}`
+      );
+      setnbPosts(response1.data.length);
+    })();
+  }, [friend._id]);
 
   return (
     <Grid
