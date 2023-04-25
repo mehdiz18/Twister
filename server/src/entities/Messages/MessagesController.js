@@ -60,7 +60,7 @@ const deleteMessage = asyncHandler(async (req, res) => {
 });
 
 const updateMessageInfos = asyncHandler(async (req, res) => {
-  if (!req.body.user) {
+  if (!req.body.user || !req.body.update) {
     res.status(400);
     throw new Error("Please verify args");
   }
@@ -71,30 +71,52 @@ const updateMessageInfos = asyncHandler(async (req, res) => {
     throw new Error("Message not found");
   }
 
-  let nbLikes = message.likes;
-  let fans = message.likers;
+  
   let user = parseInt(req.body.user);
-  let exists = fans.indexOf(user) === -1;
 
-  let messageUpdated = await Message.findByIdAndUpdate(
-    req.params.id,
-    {
-      $inc: {
-        likes: 1,
-      },
-      $push: {
-        likers: user,
-      },
-    },
-    { returnDocument: "after" }
-  )
-    .populate("user")
-    .populate("likers");
+  if (req.body.update === "true") {
 
-  res.status(200).json({
-    message: "message infos updated successfully",
-    msg: messageUpdated,
-  });
+    let messageUpdated = await Message.findByIdAndUpdate(
+      req.params.id,
+      {
+        $inc: {
+          likes: 1,
+        },
+        $push: {
+          likers: user,
+        },
+      },
+      { returnDocument: "after" }
+    )
+      .populate("user")
+      .populate("likers");
+  
+    res.status(200).json({
+      message: "message infos updated successfully",
+      msg: messageUpdated,
+    });
+  } 
+  else {
+    let messageUpdated = await Message.findByIdAndUpdate(
+      req.params.id,
+      {
+        $inc: {
+          likes: -1,
+        },
+        $pullAll: {
+          likers: [user],
+        },
+      },
+      { returnDocument: "after" }
+    )
+      .populate("user")
+      .populate("likers");
+  
+    res.status(200).json({
+      message: "message infos updated successfully",
+      msg: messageUpdated,
+    });
+  }
 });
 
 const getMessageInfos = asyncHandler(async (req, res) => {
