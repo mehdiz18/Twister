@@ -71,11 +71,9 @@ const updateMessageInfos = asyncHandler(async (req, res) => {
     throw new Error("Message not found");
   }
 
-  
   let user = parseInt(req.body.user);
 
   if (req.body.update === "true") {
-
     let messageUpdated = await Message.findByIdAndUpdate(
       req.params.id,
       {
@@ -90,14 +88,11 @@ const updateMessageInfos = asyncHandler(async (req, res) => {
     )
       .populate("user")
       .populate("likers");
-  
     res.status(200).json({
       message: "message infos updated successfully",
       msg: messageUpdated,
     });
-    console.log(messageUpdated);
-  } 
-  else {
+  } else {
     let messageUpdated = await Message.findByIdAndUpdate(
       req.params.id,
       {
@@ -112,7 +107,7 @@ const updateMessageInfos = asyncHandler(async (req, res) => {
     )
       .populate("user")
       .populate("likers");
-  
+
     res.status(200).json({
       message: "message infos updated successfully",
       msg: messageUpdated,
