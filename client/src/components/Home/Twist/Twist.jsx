@@ -1,21 +1,13 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
   ChatBubbleOutline,
   CreateOutlined,
-  Delete,
   DeleteOutline,
   Favorite,
   FavoriteBorder,
-  Update,
 } from "@mui/icons-material";
-import {
-  Avatar,
-  DialogTitle,
-  Drawer,
-  IconButton,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Avatar, IconButton, Typography } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
 import { useEffect, useState } from "react";
