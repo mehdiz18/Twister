@@ -3,7 +3,7 @@ import SideBar from "./SideBar/SideBar";
 import { useState } from "react";
 import Welcome from "../welcome";
 import Profile from "./Profile/Profile";
-import Feed from "./Feed";
+import Feed from "./Feed/Feed";
 
 const Home = ({ loggedState, logout, userId }) => {
   const [index, setIndex] = useState(0);
