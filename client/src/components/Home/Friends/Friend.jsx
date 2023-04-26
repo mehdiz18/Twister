@@ -1,14 +1,26 @@
-import { Avatar, IconButton, Typography } from "@mui/material";
+import { Avatar, Link, Typography } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import ProfileDialog from "./ProfileDialog";
 
 const Friend = ({ friend }) => {
   const [nbPosts, setnbPosts] = useState(0);
   const [nbFriends, setnbFriends] = useState(0);
-  const [errMsg, setErrMsg] = useState("");
+  // const [errMsg, setErrMsg] = useState("");
+  const [openProfil, setOpenProfil] = useState(false);
+  const friendId = useRef(-1);
 
+
+  const handleOpenDialogProfil = () => {
+    setOpenProfil(true);
+  };
+  const handleCloseDialogProfil = () => {
+    setOpenProfil(false);
+  };
+
+  friendId.current = friend._id;
   useEffect(() => {
     (async () => {
       let response = await axios.get(
@@ -38,11 +50,24 @@ const Friend = ({ friend }) => {
         </Avatar>
       </Grid>
       <Grid item container direction="column" width={0.9}>
-        <Grid item>
-          <Typography variant="subtitle2">{`${friend.firstName} ${friend.lastName}`}</Typography>
+        <Grid item >
+          <Link 
+            variant="h5" 
+            underline="hover" 
+            color = "black"
+            
+            onClick={handleOpenDialogProfil}
+            >
+            {`${friend.firstName} ${friend.lastName}`}
+          </Link>
+          <ProfileDialog
+                friendId = {friendId}
+                open={openProfil}
+                handleClose={handleCloseDialogProfil}
+            ></ProfileDialog>
         </Grid>
         <Grid item>
-          <Typography variant="body2" style={{ wordBreak: "break-word" }}>
+          <Typography variant="body3" style={{ wordBreak: "break-word" }}>
             {nbPosts} Posts, {nbFriends} Amis
           </Typography>
         </Grid>

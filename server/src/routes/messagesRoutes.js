@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Messages = require("../entities/Messages/MessagesController");
 
+router.get("/:id/details", Messages.getOneMessage);
 router.get("/:id", Messages.getListMessage);
 router.post("/", Messages.postMessage);
 // router.get("/infos", Messages.getMessageInfos);

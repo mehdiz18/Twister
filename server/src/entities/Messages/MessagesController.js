@@ -2,6 +2,22 @@ const User = require("../Users/User");
 const Message = require("./Message");
 const asyncHandler = require("express-async-handler");
 
+
+const getOneMessage = asyncHandler(async(req, res) => {
+  if (!req.params.id) {
+    res.status(400);
+    throw new Error("Please verify args");
+  }
+
+  const message = await Message.findById({_id : req.params.id}).populate("user");
+
+  if (message == null) {
+    res.status(404);
+    throw new Error("message not found");
+  }
+  res.status(200).json(message);
+
+});
 const getListMessage = asyncHandler(async (req, res) => {
   if (!req.params.id) {
     res.status(400);
@@ -92,7 +108,6 @@ const updateMessageInfos = asyncHandler(async (req, res) => {
       message: "message infos updated successfully",
       msg: messageUpdated,
     });
-    console.log(messageUpdated);
   } else {
     let messageUpdated = await Message.findByIdAndUpdate(
       req.params.id,
@@ -197,6 +212,7 @@ const mehdiFunction = asyncHandler(async (req, res) => {
   res.json(messages);
 });
 module.exports = {
+  getOneMessage,
   updateMessage,
   deleteMessage,
   postMessage,

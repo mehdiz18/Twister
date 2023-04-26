@@ -11,6 +11,7 @@ import useFriends from "../../../hooks/useFriends";
 import axiosConfig from "../../../hooks/consts";
 
 const Profile = ({ userId }) => {
+  console.log(`im supposed to be here ${userId.current}`);
   const [errMsg, setErrMsg] = useState("");
   const [twists, setTwists] = useState([]);
   const [userName, setUserName] = useState("");

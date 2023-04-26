@@ -1,8 +1,8 @@
 import { Box, Button, Dialog, DialogTitle, TextField } from "@mui/material";
 import { useState } from "react";
 
-const ModifyDialog = ({ message, open, handleClose, modifyCallback }) => {
-  const [newMessage, setNewMessage] = useState(message.content);
+const AddComment = ({ message, open, handleClose, addCallBack }) => {
+  const [newComment, setNewComment] = useState("");
   return (
     <Dialog
       open={open}
@@ -11,7 +11,7 @@ const ModifyDialog = ({ message, open, handleClose, modifyCallback }) => {
         sx: { width: 0.3 },
       }}
     >
-      <DialogTitle align="center">Modifier Twist</DialogTitle>
+      <DialogTitle align="center">Ajouter un commentaire</DialogTitle>
       <Box
         sx={{
           width: 0.8,
@@ -21,18 +21,19 @@ const ModifyDialog = ({ message, open, handleClose, modifyCallback }) => {
       >
         <TextField
           fullWidth
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
         ></TextField>
         <Box sx={{ width: 0.5, margin: "auto" }}>
           <Button
             variant="contained"
             onClick={() => {
-              modifyCallback(message._id, newMessage);
+              addCallBack(message._id, newComment);
               handleClose();
+              setNewComment("");
             }}
           >
-            Modifier
+            Commenter
           </Button>
         </Box>
       </Box>
@@ -40,4 +41,4 @@ const ModifyDialog = ({ message, open, handleClose, modifyCallback }) => {
   );
 };
 
-export default ModifyDialog;
+export default AddComment;
