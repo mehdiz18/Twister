@@ -10,7 +10,7 @@ import {
 import { Avatar, Button, Link, IconButton, Typography } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
-import { useEffect, useState, useRef} from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import axiosConfig from "../../../hooks/consts";
 import ModifyDialog from "./ModifyDialog";
@@ -30,7 +30,7 @@ const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
   const [commentsDetailed, setCommentsDetailed] = useState([]);
   const [nbComments, setNbComments] = useState(0);
   const [openProfil, setOpenProfil] = useState(false);
-  
+
   const friendId = useRef(-1);
 
   friendId.current = message.user._id;
@@ -128,50 +128,50 @@ const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
     setIsLiked(!isLiked);
   };
 
-  
-  
   useEffect(() => {
     alreadyLiked(message._id).then((exists) => {
       setIsLiked(exists);
     });
-    alreadyCommented(message._id).then((commentaires) =>{
+    alreadyCommented(message._id).then((commentaires) => {
       setComments(commentaires);
       setNbComments(commentaires.length);
-    })
+    });
   }, []);
-  
-  const addComment = async( id, commentaire ) => {
-    
+
+  const addComment = async (id, commentaire) => {
     try {
       let response = await axios.post(
-        `http://127.0.0.1:5000/api/messages/${id}/comments`, 
+        `http://127.0.0.1:5000/api/messages/${id}/comments`,
         {
-          content : commentaire,
-          userId : userId.current
-        }, 
-        axiosConfig);
-        setNbComments(nbComments+1);
-      } catch (err) {
-        setErrMsg("Erreur Lors de connexion au serveur");
-        console.log(err);
-      }
-    };
-    
-  const showComments = async(id) =>{
+          content: commentaire,
+          userId: userId.current,
+        },
+        axiosConfig
+      );
+      setNbComments(nbComments + 1);
+    } catch (err) {
+      setErrMsg("Erreur Lors de connexion au serveur");
+      console.log(err);
+    }
+  };
+
+  const showComments = async (id) => {
     try {
       let response = await axios.get(
-        `http://127.0.0.1:5000/api/messages/${id}/comments`);
+        `http://127.0.0.1:5000/api/messages/${id}/comments`
+      );
       setComments(response.data);
-    
+
       let temp = response.data;
       try {
-          let commentaires = [];
-          for (let t of temp) {
-            let res = await axios.get(
-              `http://127.0.0.1:5000/api/messages/${t}/details`);
-            commentaires.push(res.data);
-          };
-          setCommentsDetailed(commentaires);
+        let commentaires = [];
+        for (let t of temp) {
+          let res = await axios.get(
+            `http://127.0.0.1:5000/api/messages/${t}/details`
+          );
+          commentaires.push(res.data);
+        }
+        setCommentsDetailed(commentaires);
       } catch (err) {
         setErrMsg("Erreur Lors de connexion au serveur");
         console.log(errMsg);
@@ -181,8 +181,7 @@ const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
       console.log(errMsg);
     }
   };
-
-    return (
+  return (
     <Grid
       container
       sx={{ border: "1px solid", borderColor: "divider" }}
@@ -198,17 +197,19 @@ const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
       </Grid>
       <Grid item container direction="column" width={0.9}>
         <Grid item>
-          <Link 
-            variant="h6" 
-            underline="hover" 
-            color = "black"
+          <Link
+            variant="h6"
+            underline="hover"
+            color="black"
             onClick={handleOpenDialogProfil}
-            >{`${message.user.firstName} ${message.user.lastName}`}
+          >
+            {`${message.user.firstName} ${message.user.lastName}`}
           </Link>
           <ProfileDialog
-                friendId = {friendId}
-                open={openProfil}
-                handleClose={handleCloseDialogProfil}
+            friendId={friendId}
+            visitorId={userId}
+            open={openProfil}
+            handleClose={handleCloseDialogProfil}
           ></ProfileDialog>
         </Grid>
         <Grid item>
@@ -218,17 +219,21 @@ const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
         </Grid>
         <Grid item container>
           <Grid item>
-            <IconButton disableRipple onClick={handleOpenDialogAdd} aria-labelledby="commenter">
-              <ChatBubbleOutline label="commenter"/>
+            <IconButton
+              disableRipple
+              onClick={handleOpenDialogAdd}
+              aria-labelledby="commenter"
+            >
+              <ChatBubbleOutline label="commenter" />
             </IconButton>
             <AddComment
-                message={message}
-                open={openAdd}
-                handleClose={handleCloseDialogAdd}
-                addCallBack={addComment}
+              message={message}
+              open={openAdd}
+              handleClose={handleCloseDialogAdd}
+              addCallBack={addComment}
             ></AddComment>
-          </Grid> 
-         
+          </Grid>
+
           <Grid item>
             <IconButton
               onClick={() => {
@@ -239,7 +244,7 @@ const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
               <Typography ml={1}>{likes}</Typography>
             </IconButton>
           </Grid>
-         
+
           {modifyTwist ? (
             <Grid item>
               <IconButton disableRipple onClick={handleOpenDialog}>
@@ -270,26 +275,24 @@ const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
             <></>
           )}
           <Grid item>
-          <Link
-            underline="hover"
-            color="black"
-            component="button"
-            variant="body2"
-            sx={{m : 1, p : 0.3}}
-            onClick={()=> {
-              showComments(message._id);
-              handleOpenDialogList();
-            }
-            }
-
-          >
-            Commentaires ({nbComments})
-          </Link>
-          <ListComments
-                userId = {userId}
-                comments={commentsDetailed}
-                open={openList}
-                handleClose={handleCloseDialogList}
+            <Link
+              underline="hover"
+              color="black"
+              component="button"
+              variant="body2"
+              sx={{ m: 1, p: 0.3 }}
+              onClick={() => {
+                showComments(message._id);
+                handleOpenDialogList();
+              }}
+            >
+              Commentaires ({nbComments})
+            </Link>
+            <ListComments
+              userId={userId}
+              comments={commentsDetailed}
+              open={openList}
+              handleClose={handleCloseDialogList}
             ></ListComments>
           </Grid>
         </Grid>

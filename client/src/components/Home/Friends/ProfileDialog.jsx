@@ -1,10 +1,8 @@
-import { Box, DialogTitle, Dialog, DialogContent} from "@mui/material";
+import { DialogTitle, Dialog, DialogContent } from "@mui/material";
 // import { useState } from "react";
 import Profile from "../Profile/Profile";
 
-const ProfileDialog = ({ friendId, open, handleClose}) => {
-  console.log("je suis dans ProfilDialog");
-  console.log(friendId);
+const ProfileDialog = ({ visitorId, friendId, open, handleClose }) => {
   return (
     <Dialog
       open={open}
@@ -15,12 +13,10 @@ const ProfileDialog = ({ friendId, open, handleClose}) => {
         sx: { width: 0.3 },
       }}
     >
-      <DialogTitle align="center">Modifier Twist</DialogTitle>
+      <DialogTitle align="center">Visite Profil</DialogTitle>
 
       <DialogContent>
-        <Profile userId = {friendId}>
-            
-        </Profile>
+        <Profile userId={friendId} visitorId={visitorId}></Profile>
       </DialogContent>
     </Dialog>
   );

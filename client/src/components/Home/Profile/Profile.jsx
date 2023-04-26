@@ -10,13 +10,23 @@ import axios from "axios";
 import useFriends from "../../../hooks/useFriends";
 import axiosConfig from "../../../hooks/consts";
 
-const Profile = ({ userId }) => {
-  console.log(`im supposed to be here ${userId.current}`);
+const Profile = ({ userId, visitorId }) => {
   const [errMsg, setErrMsg] = useState("");
   const [twists, setTwists] = useState([]);
   const [userName, setUserName] = useState("");
   const [friendsCount, setFriendsCount] = useState(0);
+  const [isFriend, setIsFriend] = useState(false);
   let [friends] = useFriends(userId);
+  useEffect(() => {
+    for (let f of friends) {
+      if (f._id === visitorId.current) {
+        setIsFriend(true);
+      } else if (f._id === visitorId.current) {
+        setIsFriend(true);
+      }
+    }
+  }, [visitorId, friends]);
+
   useEffect(() => {
     (async () => {
       let response = await axios.get(
@@ -86,6 +96,9 @@ const Profile = ({ userId }) => {
     );
   };
 
+  const deleteFriend = () => {
+    setIsFriend(!isFriend);
+  };
   const [tabValue, setTabValue] = useState(0);
   const tabs = [
     <ListTwist
@@ -108,9 +121,31 @@ const Profile = ({ userId }) => {
         <Typography variant="h5" mt={2}>
           {userName}
         </Typography>
-        <Button variant="contained" sx={{ width: "30%" }}>
-          Ajouter
-        </Button>
+        {visitorId.current !== userId.current ? (
+          !isFriend ? (
+            <Button
+              variant="contained"
+              sx={{ width: "30%" }}
+              onClick={deleteFriend}
+            >
+              Ajouter
+            </Button>
+          ) : (
+            <Button
+              variant="outlined"
+              sx={{
+                width: "30%",
+                backgroundColor: "#ffffff !important",
+                borderWidth: "3px !important",
+              }}
+              onClick={deleteFriend}
+            >
+              Rennek
+            </Button>
+          )
+        ) : (
+          <></>
+        )}
         <Grid alignSelf="flex-start" item container pl={4}>
           <Typography variant="h6">{friendsCount} Amis</Typography>
         </Grid>

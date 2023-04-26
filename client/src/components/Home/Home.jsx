@@ -11,7 +11,10 @@ const Home = ({ loggedState, logout, userId }) => {
     setIndex(index);
   };
 
-  const views = [<Feed userId={userId} />, <Profile userId={userId} />];
+  const views = [
+    <Feed userId={userId} />,
+    <Profile userId={userId} visitorId={userId} />,
+  ];
 
   return loggedState ? (
     <Grid
