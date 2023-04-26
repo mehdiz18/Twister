@@ -1,8 +1,9 @@
-import { Home, PersonOutline, Search } from "@mui/icons-material";
-import { Grid, Button, Input } from "@mui/material";
+import { Home, PersonOutline } from "@mui/icons-material";
+import { Grid, Button } from "@mui/material";
 import Logo from "../../../img/logo.png";
+import SearchBar from "./SearchBar";
 
-const SideBar = ({ disconnect, changeView }) => {
+const SideBar = ({ disconnect, changeView, userId }) => {
   return (
     <Grid
       container
@@ -15,19 +16,7 @@ const SideBar = ({ disconnect, changeView }) => {
         <img src={Logo} width="70%" alt="logo" />
       </Grid>
       <Grid item width={0.5}>
-        <Input
-          fullWidth
-          placeholder="Recherche"
-          disableUnderline
-          startAdornment={<Search />}
-          sx={{
-            backgroundColor: "#ededed",
-            padding: 0.5,
-            paddingLeft: 2,
-            borderRadius: 30,
-            boxSizing: "border-box",
-          }}
-        />
+        <SearchBar userId={userId} />
       </Grid>
       <Grid container item width={0.4} justifyContent="flex-end">
         <Grid item>

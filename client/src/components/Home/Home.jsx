@@ -21,7 +21,11 @@ const Home = ({ loggedState, logout, userId }) => {
       justifyContent="space-between"
     >
       <Grid item container>
-        <SideBar disconnect={logout} changeView={handleIndexChange}></SideBar>
+        <SideBar
+          disconnect={logout}
+          changeView={handleIndexChange}
+          userId={userId}
+        ></SideBar>
       </Grid>
       <Grid item>{views[index]}</Grid>
     </Grid>
