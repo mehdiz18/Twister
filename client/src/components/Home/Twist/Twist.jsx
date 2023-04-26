@@ -10,13 +10,13 @@ import {
 import { Avatar, Button, Link, IconButton, Typography } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef} from "react";
 import axios from "axios";
 import axiosConfig from "../../../hooks/consts";
 import ModifyDialog from "./ModifyDialog";
 import AddComment from "./AddCommentDialog";
 import ListComments from "./ListCommentsDialog";
-
+import ProfileDialog from "../Friends/ProfileDialog";
 
 const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -29,8 +29,18 @@ const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
   const [comments, setComments] = useState([]);
   const [commentsDetailed, setCommentsDetailed] = useState([]);
   const [nbComments, setNbComments] = useState(0);
+  const [openProfil, setOpenProfil] = useState(false);
   
+  const friendId = useRef(-1);
 
+  friendId.current = message.user._id;
+
+  const handleOpenDialogProfil = () => {
+    setOpenProfil(true);
+  };
+  const handleCloseDialogProfil = () => {
+    setOpenProfil(false);
+  };
 
   const handleOpenDialog = () => {
     setOpen(true);
@@ -188,7 +198,18 @@ const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
       </Grid>
       <Grid item container direction="column" width={0.9}>
         <Grid item>
-          <Typography variant="subtitle2">{`${message.user.firstName} ${message.user.lastName}`}</Typography>
+          <Link 
+            variant="h6" 
+            underline="hover" 
+            color = "black"
+            onClick={handleOpenDialogProfil}
+            >{`${message.user.firstName} ${message.user.lastName}`}
+          </Link>
+          <ProfileDialog
+                friendId = {friendId}
+                open={openProfil}
+                handleClose={handleCloseDialogProfil}
+          ></ProfileDialog>
         </Grid>
         <Grid item>
           <Typography variant="body1" style={{ wordBreak: "break-word" }}>
@@ -197,8 +218,8 @@ const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
         </Grid>
         <Grid item container>
           <Grid item>
-            <IconButton disableRipple onClick={handleOpenDialogAdd}>
-              <ChatBubbleOutline />
+            <IconButton disableRipple onClick={handleOpenDialogAdd} aria-labelledby="commenter">
+              <ChatBubbleOutline label="commenter"/>
             </IconButton>
             <AddComment
                 message={message}

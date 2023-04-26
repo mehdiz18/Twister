@@ -9,7 +9,7 @@ const ProfileDialog = ({ friendId, open, handleClose}) => {
     <Dialog
       open={open}
       onClose={handleClose}
-      maxWidth="lg"
+      //maxWidth="lg"
       fullWidth
       PaperProps={{
         sx: { width: 0.3 },
