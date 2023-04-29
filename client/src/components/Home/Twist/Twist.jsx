@@ -16,7 +16,7 @@ import axiosConfig from "../../../hooks/consts";
 import ModifyDialog from "./ModifyDialog";
 import AddComment from "./AddCommentDialog";
 import ListComments from "./ListCommentsDialog";
-import ProfileDialog from "../Friends/ProfileDialog";
+import ProfileDialog from "../Dialog/ProfileDialog";
 
 const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
   const [isLiked, setIsLiked] = useState(false);

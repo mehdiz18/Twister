@@ -3,6 +3,15 @@ const User = require("./User");
 const asyncHandler = require("express-async-handler");
 const colors = require("colors");
 
+const getUsers = asyncHandler(async(req, res) => {
+  const users = await User.find();
+  if (!users) {
+    res.status(404);
+    throw new Error("Users not found");
+  }
+  res.status(200).json(users);
+});
+
 const getUser = asyncHandler(async (req, res) => {
   let user = await User.findById(req.params.id);
   if (!user) {
@@ -98,6 +107,7 @@ const getUsersInfos = async (req, res) => {
 };
 
 module.exports = {
+  getUsers,
   getUser,
   postUser,
   updateUser,

@@ -3,6 +3,7 @@ import { DialogTitle, Dialog, DialogContent } from "@mui/material";
 import Profile from "../Profile/Profile";
 
 const ProfileDialog = ({ visitorId, friendId, open, handleClose }) => {
+  
   return (
     <Dialog
       open={open}

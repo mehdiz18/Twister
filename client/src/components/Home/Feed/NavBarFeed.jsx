@@ -11,6 +11,7 @@ const NavBarFeed = ({ handleChange }) => {
     <Tabs value={tabValue} onChange={handleTabChange} sx={{ width: 1 }}>
       <Tab label="Fil d'actualités" />
       <Tab label="Invitations" />
+      <Tab label="Suggestions" />
     </Tabs>
   );
 };

@@ -1,39 +1,39 @@
-import { Avatar, Link, Typography } from "@mui/material";
+import { Avatar, Link, Typography, Button } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import ProfileDialog from "../Dialog/ProfileDialog";
 
-const Friend = ({ friend }) => {
+const User = ({ userId, user }) => {
   const [nbPosts, setnbPosts] = useState(0);
   const [nbFriends, setnbFriends] = useState(0);
   // const [errMsg, setErrMsg] = useState("");
-  const [openProfil, setOpenProfil] = useState(false);
-  const friendId = useRef(-1);
+  const [openPro, setOpenPro] = useState(false);
+  const userIde = useRef(-1);
 
 
-  const handleOpenDialogProfil = () => {
-    setOpenProfil(true);
+  const handleOpenDialogPro = () => {
+    setOpenPro(true);
   };
-  const handleCloseDialogProfil = () => {
-    setOpenProfil(false);
+  const handleCloseDialogPro = () => {
+    setOpenPro(false);
   };
 
-  friendId.current = friend._id;
+  userIde.current = user._id;
   useEffect(() => {
     (async () => {
       let response = await axios.get(
-        `http://127.0.0.1:5000/api/friends/${friend._id}`
+        `http://127.0.0.1:5000/api/friends/${user._id}`
       );
       setnbFriends(response.data.length);
 
       let response1 = await axios.get(
-        `http://127.0.0.1:5000/api/messages/${friend._id}`
+        `http://127.0.0.1:5000/api/messages/${user._id}`
       );
       setnbPosts(response1.data.length);
     })();
-  }, [friend._id]);
+  }, [user._id]);
 
   return (
     <Grid
@@ -45,8 +45,8 @@ const Friend = ({ friend }) => {
     >
       <Grid item mx={2} width={0.05}>
         <Avatar alt="userAvatar" sx={{ bgcolor: deepPurple[500] }}>
-          {friend.firstName[0]}
-          {friend.lastName[0]}
+          {user.firstName[0]}
+          {user.lastName[0]}
         </Avatar>
       </Grid>
       <Grid item container direction="column" width={0.9}>
@@ -56,14 +56,15 @@ const Friend = ({ friend }) => {
             underline="hover" 
             color = "black"
             
-            onClick={handleOpenDialogProfil}
+            onClick={handleOpenDialogPro}
             >
-            {`${friend.firstName} ${friend.lastName}`}
+            {`${user.firstName} ${user.lastName}`}
           </Link>
           <ProfileDialog
-                friendId = {friendId}
-                open={openProfil}
-                handleClose={handleCloseDialogProfil}
+                visitorId={userId}
+                friendId = {userIde}
+                open={openPro}
+                handleClose={handleCloseDialogPro}
             ></ProfileDialog>
         </Grid>
         <Grid item>
@@ -71,9 +72,17 @@ const Friend = ({ friend }) => {
             {nbPosts} Posts, {nbFriends} Amis
           </Typography>
         </Grid>
-      </Grid>
+        <Button
+              variant="contained"
+              sx={{ width: "30%" }}
+              center 
+              //onClick={deleteFriend}
+            >
+              Ajouter
+        </Button>
+    </Grid>
     </Grid>
   );
 };
 
-export default Friend;
+export default User;

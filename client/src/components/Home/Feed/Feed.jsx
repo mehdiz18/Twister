@@ -4,9 +4,12 @@ import ListTwist from "../Twist/ListTwist";
 import NewTwist from "../Twist/NewTist";
 import { useState } from "react";
 import NavBarFeed from "./NavBarFeed";
+import useFriends from "../../../hooks/useFriends";
+import ListUsers from "../Users/ListUsers";
 
 const Feed = ({ userId }) => {
   let [twist, addTwist] = useFeedTwists(userId);
+  let [friends] = useFriends(userId);
 
   const [tabValue, setTabValue] = useState(0);
   const tabs = [
@@ -14,7 +17,11 @@ const Feed = ({ userId }) => {
       <NewTwist addTwist={addTwist} userId={userId} />
       <ListTwist twists={twist} userId={userId} />
     </Grid>,
-    <></>,
+    <></>, 
+    <Grid>
+      <ListUsers friends={friends} userId={userId}/>
+    </Grid>
+
   ];
   const handleTabChange = (value) => {
     setTabValue(value);

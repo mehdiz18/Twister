@@ -1,5 +1,6 @@
 const express = require("express");
 const {
+  getUsers,
   getUser,
   updateUser,
   postUser,
@@ -16,6 +17,7 @@ router.delete("/logout", logoutUser);
 router.get("/infos", getUsersInfos);
 
 router
+  .get("/", getUsers)
   .get("/:id", getUser)
   .post("/", postUser)
   .put("/", updateUser)
