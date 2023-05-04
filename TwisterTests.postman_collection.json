@@ -1,0 +1,1883 @@
+{
+	"info": {
+		"_postman_id": "99938dd1-7b3e-4595-b947-b7412a87ea80",
+		"name": "TwisterTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20900786"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "GET /api/users/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET /api/users/1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/users/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "104"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"68-l8Cw+UdaDWrhsg5qyn4Uy2dSteA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 20:45:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": 1,\n    \"email\": \"Grace.Kris10@yahoo.com\",\n    \"firstName\": \"Gabe\",\n    \"lastName\": \"Hickle\",\n    \"password\": \"O\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "m@z.tz",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "helloworld!",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "L3arvi",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Gezget",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "m@z.tz",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "helloworld!",
+											"type": "text"
+										},
+										{
+											"key": "firstName",
+											"value": "L3arvi",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Gezget",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/users/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "101"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"65-Ujva40on2K6kO/Lp1qEhm/6/WFw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 20:44:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": \"m@z.tz\",\n    \"firstName\": \"L3arvi\",\n    \"lastName\": \"Gezget\",\n    \"password\": \"helloworld!\",\n    \"_id\": 21,\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Modify Users",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "m@z.tz",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "azulus12@",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Modify Users",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "m@z.tz",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "azulus12@",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/users/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"63-Usil4WZrYQFT3BwuHNiBhhrF6Zs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 20:52:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": 21,\n    \"email\": \"m@z.tz\",\n    \"firstName\": \"L3arvi\",\n    \"lastName\": \"Gezget\",\n    \"password\": \"azulus12@\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete User",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/users/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "25"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19-cuXdtvJw/DFiG2W6pBcG0gNOuxc\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 20:52:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"1\",\n    \"deleted\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "m@z.tz",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "azulus12@",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "m@z.tz",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "azulus12@",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/users/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"35-9nPYqjcSkrSJeUX8tA/9KJvzFXQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 20:54:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"k5bFyyYFY0i3qhMsxwADgDpvrrqa3bhz\",\n    \"userId\": 21\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/users/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/users/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c-BZTvVi9e1R5E6w7MT9McSB63e7U\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 20:55:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Session closed\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Users Infos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/users/infos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"infos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Users Infos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/users/infos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										"infos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f-VxtVa9BNhtINcb5KyttIPuicDNg\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3AeoZEQ-9ZW-QHI60_qQ8lUaSnAKovLNGx.sseU4ii%2FhyRnbUxdRKPwCGzCUQn%2F9Q28jy95KTqMUNE; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 20:56:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"le nombre des utilisateurs est 21\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "Get message Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/messages/1/details",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"messages",
+								"1",
+								"details"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get message Details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/messages/1/details",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"messages",
+										"1",
+										"details"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "521"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"209-ESBBWEtEGQA/v22PVO0czCTBuSk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 20:59:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": 1,\n    \"content\": \"Autem atque quod adipisci eaque itaque ducimus. Nulla reiciendis in inventore autem perspiciatis quos velit illum aut. Mollitia exercitationem fugit sit quae cumque eligendi. Iure harum aspernatur error debitis expedita fuga repudiandae culpa. Expedita consectetur officia mollitia ab iste ea expedita.\",\n    \"user\": {\n        \"_id\": 18,\n        \"email\": \"Minerva68@hotmail.com\",\n        \"firstName\": \"Colt\",\n        \"lastName\": \"Hermiston\",\n        \"password\": \"m\",\n        \"__v\": 0\n    },\n    \"likes\": 0,\n    \"likers\": [],\n    \"comments\": [],\n    \"postDate\": \"2023-04-16T14:49:55.315Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Get user Messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/messages/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"messages",
+								"11"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get user Messages",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/messages/11",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"messages",
+										"11"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "233"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e9-JDf3IUM6NfVJYqS13BrVaIXRuLE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 21:00:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": 46,\n        \"content\": \"ca marche, mais a peu pres kan\",\n        \"user\": {\n            \"_id\": 11,\n            \"email\": \"Anthony.Zemlak@hotmail.com\",\n            \"firstName\": \"Frances\",\n            \"lastName\": \"Hauck\"\n        },\n        \"likes\": 0,\n        \"likers\": [],\n        \"comments\": [],\n        \"postDate\": \"2023-04-25T16:05:01.784Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create new message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "content",
+									"value": "hello world from earth",
+									"type": "text"
+								},
+								{
+									"key": "userId",
+									"value": "11",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/messages/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"messages",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create new message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "content",
+											"value": "hello world from earth",
+											"type": "text"
+										},
+										{
+											"key": "userId",
+											"value": "11",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/messages/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"messages",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "137"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"89-drE5Lg3vrQYAjdNfDZAGMaysgFA\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3AikfaRlXUuWrI2v2RzYQ7yGNv6hrEYtrW.rDzNq1oo19Lv8BAvD0prn%2FTlGHMCdPUMMbnZAnHSgU0; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 21:01:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": \"hello world from earth\",\n    \"user\": 11,\n    \"likes\": 0,\n    \"likers\": [],\n    \"comments\": [],\n    \"postDate\": \"2023-05-01T21:01:54.710Z\",\n    \"_id\": 55,\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Get message infos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/messages/1/infos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"messages",
+								"1",
+								"infos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get message infos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/messages/1/infos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"messages",
+										"1",
+										"infos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "103"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"67-+8Z0ugVKtOiItRgtJrxT/4xCiVA\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3AA7saa018T-X5TBjoUMmVp6NosI_T9doN.Gs64Vz0yUlQY%2FAoOc7jlU20HG0Q2g0AN9EVM4kJH1Is; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 21:02:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Voilà quelque informations sur le message d'id 1\",\n    \"Possessor\": \"1\",\n    \"NbLikes\": 0,\n    \"Likers\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Update message Infos",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "update",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "user",
+									"value": "18",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/messages/1/infos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"messages",
+								"1",
+								"infos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update message Infos",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "update",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "user",
+											"value": "18",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/messages/1/infos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"messages",
+										"1",
+										"infos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "897"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"381-AX+hKGOKc4sQpxxZ9fpK5Hy/NB8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 21:06:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"message infos updated successfully\",\n    \"msg\": {\n        \"_id\": 1,\n        \"content\": \"Autem atque quod adipisci eaque itaque ducimus. Nulla reiciendis in inventore autem perspiciatis quos velit illum aut. Mollitia exercitationem fugit sit quae cumque eligendi. Iure harum aspernatur error debitis expedita fuga repudiandae culpa. Expedita consectetur officia mollitia ab iste ea expedita.\",\n        \"user\": {\n            \"_id\": 18,\n            \"email\": \"Minerva68@hotmail.com\",\n            \"firstName\": \"Colt\",\n            \"lastName\": \"Hermiston\",\n            \"password\": \"m\",\n            \"__v\": 0\n        },\n        \"likes\": 4,\n        \"likers\": [\n            {\n                \"_id\": 2,\n                \"email\": \"Leopoldo.Sawayn@gmail.com\",\n                \"firstName\": \"Johnson\",\n                \"lastName\": \"Gutkowski\",\n                \"password\": \"Y\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": 21,\n                \"email\": \"m@z.tz\",\n                \"firstName\": \"L3arvi\",\n                \"lastName\": \"Gezget\",\n                \"password\": \"azulus12@\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": 18,\n                \"email\": \"Minerva68@hotmail.com\",\n                \"firstName\": \"Colt\",\n                \"lastName\": \"Hermiston\",\n                \"password\": \"m\",\n                \"__v\": 0\n            }\n        ],\n        \"comments\": [],\n        \"postDate\": \"2023-04-16T14:49:55.315Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get message comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/messages/3/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"messages",
+								"3",
+								"comments"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get message comments",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/messages/3/comments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"messages",
+										"3",
+										"comments"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 21:11:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				},
+				{
+					"name": "Add a comment to message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "content",
+									"value": "new comment",
+									"type": "text"
+								},
+								{
+									"key": "userId",
+									"value": "11",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/messages/1/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"messages",
+								"1",
+								"comments"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add a comment to message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "content",
+											"value": "new comment",
+											"type": "text"
+										},
+										{
+											"key": "userId",
+											"value": "11",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/messages/1/comments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"messages",
+										"1",
+										"comments"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "210"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d2-UqEw+FuKA9lJIMOI+21XKcAbcyc\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 21:12:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Comment posted successfully\",\n    \"lel\": [\n        {\n            \"_id\": 56,\n            \"content\": \"new comment\",\n            \"user\": 11,\n            \"likes\": 0,\n            \"likers\": [],\n            \"comments\": [],\n            \"postDate\": \"2023-05-01T21:12:26.262Z\",\n            \"__v\": 0\n        }\n    ],\n    \"comment\": \"new comment\",\n    \"user\": 11\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Message",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/messages/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"messages",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Message",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/messages/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"messages",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "25"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19-cuXdtvJw/DFiG2W6pBcG0gNOuxc\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 21:13:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"1\",\n    \"deleted\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Modify message",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "content",
+									"value": "modified new message",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/messages/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"messages",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Modify message",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "content",
+											"value": "modified new message",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/messages/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"messages",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "134"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"86-1KSPdxGLf0Qvk+PnJ01SNoKKbJI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 21:13:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": 4,\n    \"content\": \"modified new message\",\n    \"user\": 13,\n    \"likes\": 0,\n    \"likers\": [],\n    \"comments\": [],\n    \"postDate\": \"2023-04-16T14:49:55.338Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Friends",
+			"item": [
+				{
+					"name": "Get Friends of user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/friends/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"friends",
+								"11"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Friends of user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/friends/11",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"friends",
+										"11"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "787"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"313-N0oFmUR9sy0oVQ77eyUH+7PiOcM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 21:16:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": 0,\n        \"friend1\": {\n            \"_id\": 11,\n            \"email\": \"Anthony.Zemlak@hotmail.com\",\n            \"firstName\": \"Frances\",\n            \"lastName\": \"Hauck\",\n            \"password\": \"b\",\n            \"__v\": 0\n        },\n        \"friend2\": {\n            \"_id\": 12,\n            \"email\": \"Dwight.Braun@gmail.com\",\n            \"firstName\": \"Gabriel\",\n            \"lastName\": \"Collier\",\n            \"password\": \"p\",\n            \"__v\": 0\n        },\n        \"__v\": 0\n    },\n    {\n        \"_id\": 1,\n        \"friend1\": {\n            \"_id\": 11,\n            \"email\": \"Anthony.Zemlak@hotmail.com\",\n            \"firstName\": \"Frances\",\n            \"lastName\": \"Hauck\",\n            \"password\": \"b\",\n            \"__v\": 0\n        },\n        \"friend2\": {\n            \"_id\": 16,\n            \"email\": \"Anastacio2@hotmail.com\",\n            \"firstName\": \"Nichole\",\n            \"lastName\": \"Considine\",\n            \"password\": \"r\",\n            \"__v\": 0\n        },\n        \"__v\": 0\n    },\n    {\n        \"_id\": 2,\n        \"friend1\": {\n            \"_id\": 14,\n            \"email\": \"Pattie.Satterfield42@yahoo.com\",\n            \"firstName\": \"Paula\",\n            \"lastName\": \"Marks\",\n            \"password\": \"X\",\n            \"__v\": 0\n        },\n        \"friend2\": {\n            \"_id\": 11,\n            \"email\": \"Anthony.Zemlak@hotmail.com\",\n            \"firstName\": \"Frances\",\n            \"lastName\": \"Hauck\",\n            \"password\": \"b\",\n            \"__v\": 0\n        },\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create friendship between users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "friendId1",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "friendId2",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/friends/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"friends",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create friendship between users",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "friendId1",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "friendId2",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/friends/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"friends",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-EE6esrB0zSKvHSQRriWyQDDpe/Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 21:17:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"friend1\": 3,\n    \"friend2\": 2,\n    \"_id\": 5,\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Friendship",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "friendId1",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "friendId2",
+									"value": "18",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/friends",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"friends"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Friendship",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "friendId1",
+											"value": "12",
+											"type": "text"
+										},
+										{
+											"key": "friendId2",
+											"value": "18",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/friends",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"friends"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "21"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15-p9+dxOLibAYwSbN2QN6jpmYKT9k\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 01 May 2023 21:19:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"deleted\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
