@@ -1,12 +1,10 @@
-import { Box, Dialog, DialogTitle} from "@mui/material";
+import { Box, Dialog, DialogTitle } from "@mui/material";
 import ListTwist from "../Twist/ListTwist";
 
-const ListComments = ({ userId, comments, open, handleClose}) => {
- 
+const ListComments = ({ userId, comments, open, handleClose }) => {
   return (
     <Dialog
       open={open}
-      // fullWidth
       maxWidth="lg"
       onClose={handleClose}
       PaperProps={{
@@ -21,12 +19,7 @@ const ListComments = ({ userId, comments, open, handleClose}) => {
           padding: "auto",
         }}
       >
-        <ListTwist
-            twists={comments}
-            userId={userId}
-            //deleteTwist={deleteTwist}
-            //modifyTwist={modifyTwist}
-        />
+        <ListTwist twists={comments} userId={userId} />
       </Box>
     </Dialog>
   );

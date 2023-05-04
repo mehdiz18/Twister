@@ -134,7 +134,6 @@ const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
     });
     alreadyCommented(message._id).then((commentaires) => {
       setComments(commentaires);
-      setNbComments(commentaires.length);
     });
   }, []);
 
@@ -163,19 +162,16 @@ const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
       setComments(response.data);
 
       let temp = response.data;
-      try {
-        let commentaires = [];
-        for (let t of temp) {
-          let res = await axios.get(
+      let commentaires = [];
+      for (let t of temp) {
+        try {
+          var res = await axios.get(
             `http://127.0.0.1:5000/api/messages/${t}/details`
           );
           commentaires.push(res.data);
-        }
-        setCommentsDetailed(commentaires);
-      } catch (err) {
-        setErrMsg("Erreur Lors de connexion au serveur");
-        console.log(errMsg);
+        } catch (error) {}
       }
+      setCommentsDetailed(commentaires);
     } catch (err) {
       setErrMsg("Erreur Lors de connexion au serveur");
       console.log(errMsg);
