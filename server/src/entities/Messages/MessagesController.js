@@ -2,21 +2,21 @@ const User = require("../Users/User");
 const Message = require("./Message");
 const asyncHandler = require("express-async-handler");
 
-
-const getOneMessage = asyncHandler(async(req, res) => {
+const getOneMessage = asyncHandler(async (req, res) => {
   if (!req.params.id) {
     res.status(400);
     throw new Error("Please verify args");
   }
 
-  const message = await Message.findById({_id : req.params.id}).populate("user");
+  const message = await Message.findById({ _id: req.params.id }).populate(
+    "user"
+  );
 
   if (message == null) {
     res.status(404);
     throw new Error("message not found");
   }
   res.status(200).json(message);
-
 });
 const getListMessage = asyncHandler(async (req, res) => {
   if (!req.params.id) {
@@ -181,7 +181,7 @@ const postComment = asyncHandler(async (req, res) => {
   });
 });
 
-const getComments = async (req, res) => {
+const getComments = asyncHandler(async (req, res) => {
   let message = await Message.findById(req.params.id);
 
   if (!message) {
@@ -190,9 +190,9 @@ const getComments = async (req, res) => {
   }
 
   res.json(message.comments);
-};
+});
 
-const getMessagesLessThenOneHour = async (req, res) => {
+const getMessagesLessThenOneHour = asyncHandler(async (req, res) => {
   var datedujourMoins1h = new Date() - 60 * 60 * 1000;
   var inputDate = new Date(datedujourMoins1h);
   let messages = await Message.find({
@@ -200,16 +200,6 @@ const getMessagesLessThenOneHour = async (req, res) => {
   });
 
   res.status(200).json(messages);
-};
-
-const mehdiFunction = asyncHandler(async (req, res) => {
-  let current = new Date();
-  current.setHours(current.getHours() - 1);
-
-  let messages = await Message.find({
-    postDate: { $gt: current.toISOString() },
-  });
-  res.json(messages);
 });
 module.exports = {
   getOneMessage,
@@ -222,5 +212,4 @@ module.exports = {
   postComment,
   getComments,
   getMessagesLessThenOneHour,
-  mehdiFunction,
 };
