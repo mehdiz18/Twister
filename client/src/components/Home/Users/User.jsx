@@ -4,12 +4,14 @@ import Grid from "@mui/material/Grid";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import ProfileDialog from "../Dialog/ProfileDialog";
+import axiosConfig from "../../../hooks/consts";
 
 const User = ({ userId, user }) => {
   const [nbPosts, setnbPosts] = useState(0);
   const [nbFriends, setnbFriends] = useState(0);
-  // const [errMsg, setErrMsg] = useState("");
+  const [errMsg, setErrMsg] = useState("");
   const [openPro, setOpenPro] = useState(false);
+  const [isFriend, setIsFriend] = useState(false);
   const userIde = useRef(-1);
 
 
@@ -19,6 +21,29 @@ const User = ({ userId, user }) => {
   const handleCloseDialogPro = () => {
     setOpenPro(false);
   };
+
+  const addFriend = async() => {
+    
+    let friend1 = userId.current;
+    let friend2 = user._id;
+
+    try {
+
+      let response = await axios.post(
+        `http://127.0.0.1:5000/api/friends/`, 
+        {
+          friendId1 : friend1,
+          friendId2 : friend2,
+        }, 
+        axiosConfig
+      );
+      setIsFriend(true);
+    } catch (err) {
+      setErrMsg("Erreur Lors de connexion au serveur");
+      console.log(err);
+    } 
+
+  }
 
   userIde.current = user._id;
   useEffect(() => {
@@ -72,14 +97,26 @@ const User = ({ userId, user }) => {
             {nbPosts} Posts, {nbFriends} Amis
           </Typography>
         </Grid>
-        <Button
+        {!isFriend ? 
+        (<Button 
+              className="addButton"
               variant="contained"
-              sx={{ width: "30%" }}
-              center 
-              //onClick={deleteFriend}
+              //sx={{ width: "30%" }}
+              onClick={addFriend}
             >
               Ajouter
-        </Button>
+        </Button>) : (
+        <Button 
+              variant="outlined"
+              sx={{
+                width: "30%",
+                backgroundColor: "#ffffff !important",
+                borderWidth: "3px !important",
+              }}
+              onClick={addFriend}
+            >
+              Amis
+        </Button>)}
     </Grid>
     </Grid>
   );

@@ -17,6 +17,7 @@ const Profile = ({ userId, visitorId }) => {
   const [friendsCount, setFriendsCount] = useState(0);
   const [isFriend, setIsFriend] = useState(false);
   let [friends] = useFriends(userId);
+
   useEffect(() => {
     for (let f of friends) {
       if (f._id === visitorId.current) {
@@ -48,6 +49,7 @@ const Profile = ({ userId, visitorId }) => {
       setFriendsCount(response.data.length);
     })();
   }, [userId]);
+
   const getMessages = async (userId) => {
     try {
       let response = await axios.get(
@@ -61,6 +63,7 @@ const Profile = ({ userId, visitorId }) => {
       console.log(err);
     }
   };
+
   const deleteTwist = async (messageId) => {
     try {
       await axios.delete(`http://127.0.0.1:5000/api/messages/${messageId}`);
@@ -71,7 +74,7 @@ const Profile = ({ userId, visitorId }) => {
       );
     } catch (err) {
       setErrMsg("Erreur Lors de connexion au serveur");
-      console.log(err);
+      console.log(errMsg);
     }
   };
 
@@ -107,8 +110,31 @@ const Profile = ({ userId, visitorId }) => {
       deleteTwist={deleteTwist}
       modifyTwist={modifyTwist}
     />,
-    <ListFriends friends={friends} />,
+    <ListFriends userId = {userId} friends={friends} />,
   ];
+
+  const addFriend = async() => {
+    
+    let friend1 = userId.current;
+    let friend2 = visitorId.current;
+
+    try {
+
+      let response = await axios.post(
+        `http://127.0.0.1:5000/api/friends/`, 
+        {
+          friendId1 : friend1,
+          friendId2 : friend2,
+        }, 
+        axiosConfig
+      );
+      setIsFriend(true);
+    } catch (err) {
+      setErrMsg("Erreur Lors de connexion au serveur");
+      console.log(err);
+    } 
+  }
+
   const handleTabChange = (value) => {
     setTabValue(value);
   };
@@ -126,7 +152,7 @@ const Profile = ({ userId, visitorId }) => {
             <Button
               variant="contained"
               sx={{ width: "30%" }}
-              onClick={deleteFriend}
+              onClick={addFriend}
             >
               Ajouter
             </Button>
@@ -140,7 +166,7 @@ const Profile = ({ userId, visitorId }) => {
               }}
               onClick={deleteFriend}
             >
-              Rennek
+              Amis
             </Button>
           )
         ) : (

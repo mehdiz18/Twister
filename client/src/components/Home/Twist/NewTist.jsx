@@ -51,7 +51,7 @@ const NewTwist = ({ addTwist, userId }) => {
         </Avatar>
         <Input
           type="text"
-          placeholder="Azul"
+          placeholder="Howdy-do ?"
           disableUnderline
           sx={{ width: "90%" }}
           maxRows={2}

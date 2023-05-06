@@ -13,8 +13,8 @@ import Grid from "@mui/material/Grid";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import axiosConfig from "../../../hooks/consts";
-import ModifyDialog from "./ModifyDialog";
-import AddComment from "./AddCommentDialog";
+import ModifyDialog from "../Dialog/ModifyDialog";
+import AddComment from "../Dialog/AddCommentDialog";
 import ListComments from "./ListCommentsDialog";
 import ProfileDialog from "../Dialog/ProfileDialog";
 
@@ -134,6 +134,7 @@ const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
     });
     alreadyCommented(message._id).then((commentaires) => {
       setComments(commentaires);
+      setNbComments(commentaires.length);
     });
   }, []);
 

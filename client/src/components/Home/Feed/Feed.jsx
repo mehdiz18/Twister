@@ -16,8 +16,7 @@ const Feed = ({ userId }) => {
     <Grid>
       <NewTwist addTwist={addTwist} userId={userId} />
       <ListTwist twists={twist} userId={userId} />
-    </Grid>,
-    <></>, 
+    </Grid>, 
     <Grid>
       <ListUsers friends={friends} userId={userId}/>
     </Grid>

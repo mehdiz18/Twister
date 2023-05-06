@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import ProfileDialog from "../Dialog/ProfileDialog";
 
-const Friend = ({ friend }) => {
+const Friend = ({ userId, friend }) => {
   const [nbPosts, setnbPosts] = useState(0);
   const [nbFriends, setnbFriends] = useState(0);
   // const [errMsg, setErrMsg] = useState("");
@@ -61,6 +61,7 @@ const Friend = ({ friend }) => {
             {`${friend.firstName} ${friend.lastName}`}
           </Link>
           <ProfileDialog
+                visitorId={userId}
                 friendId = {friendId}
                 open={openProfil}
                 handleClose={handleCloseDialogProfil}

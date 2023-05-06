@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 import { useState } from "react";
 import useFeedTwists from "../../../hooks/useFeedTwists";
 import SearchResult from "./SearchResult";
-import SearchResultDialog from "./SearchResultDialog";
+import SearchResultDialog from "../Dialog/SearchResultDialog";
 const SearchBar = ({ userId }) => {
   const [twists] = useFeedTwists(userId);
   const [search, setSearch] = useState("");
