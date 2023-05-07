@@ -1,12 +1,12 @@
 //TODO: Pass the userId to the Home
 //TODO: Write a hook with useEffect to loadPosts
 
-import "../css/login.css";
-import logo from "./../img/logo.png";
-import banner from "./../img/banner.png";
+import "../../css/login.css";
+import logo from "../../img/logo.png";
+import banner from "../../img/banner.png";
 import { Button, Grid, Link, Typography } from "@mui/material";
-import Home from "./Home/Home";
-import useLogin from "../hooks/useLogin";
+import Home from "../Home/Home";
+import useLogin from "../../hooks/useLogin";
 const Login = ({ changeRegisterView, changeForgotView, changeWelcomeView }) => {
   const [
     email,

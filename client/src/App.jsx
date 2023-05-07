@@ -1,9 +1,9 @@
 import "./css/App.css";
-import Welcome from "./components/welcome";
+import Welcome from "./components/Welcome/welcome";
 import { useState } from "react";
-import Signup from "./components/signup";
-import Login from "./components/login";
-import Forgotten from "./components/forgottenps";
+import Signup from "./components/Welcome/signup";
+import Login from "./components/Welcome/login";
+import Forgotten from "./components/Welcome/forgottenps";
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);

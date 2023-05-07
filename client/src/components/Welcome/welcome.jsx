@@ -1,7 +1,7 @@
-import "../css/welcome.css";
+import "../../css/welcome.css";
 // import Button from "./Button";
-import logo from "./../img/logo.png";
-import banner from "./../img/banner.png";
+import logo from "../../img/logo.png";
+import banner from "../../img/banner.png";
 import { Button } from "@mui/material";
 const Welcome = ({ changeLoginState, changeRegisterState }) => {
   return (

@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import useFeedTwists from "../../../hooks/useFeedTwists";
 import ListTwist from "../Twist/ListTwist";
 import NewTwist from "../Twist/NewTist";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import NavBarFeed from "./NavBarFeed";
 import useFriends from "../../../hooks/useFriends";
 import ListUsers from "../Users/ListUsers";
@@ -10,8 +10,9 @@ import ListUsers from "../Users/ListUsers";
 const Feed = ({ userId }) => {
   let [twist, addTwist] = useFeedTwists(userId);
   let [friends] = useFriends(userId);
-
+  
   const [tabValue, setTabValue] = useState(0);
+
   const tabs = [
     <Grid>
       <NewTwist addTwist={addTwist} userId={userId} />
@@ -26,6 +27,10 @@ const Feed = ({ userId }) => {
     setTabValue(value);
   };
 
+  useEffect(()=>{
+    console.log('Tab Changed')
+  },[tabValue])
+  
   return (
     <Grid item container width={1}>
         <Grid item width={1}>

@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import SideBar from "./SideBar/SideBar";
 import { useState } from "react";
-import Welcome from "../welcome";
+import Welcome from "../Welcome/welcome";
 import Profile from "./Profile/Profile";
 import Feed from "./Feed/Feed";
 

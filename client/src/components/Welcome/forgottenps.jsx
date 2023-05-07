@@ -1,7 +1,7 @@
 import { Button, Link, Typography } from "@mui/material";
-import "../css/forgotten.css";
-import logo from "../img/logo.png";
-import useForgotPassword from "../hooks/useForgotPassword";
+import "../../css/forgotten.css";
+import logo from "../../img/logo.png";
+import useForgotPassword from "../../hooks/useForgotPassword";
 
 const Forgotten = ({ changeLoginView }) => {
   const [

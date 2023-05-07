@@ -5,7 +5,7 @@ const Friend = require("../entities/Friends/Friends");
 const Message = require("../entities/Messages/Message");
 const colors = require("colors");
 
-const population = 5;
+const population = 15;
 
 const populateDb = async () => {
   let users = await User.find();
@@ -38,7 +38,7 @@ const populateDb = async () => {
 };
 
 const populateUsers = async () => {
-  for (var i = 0; i < 4 * population; i++) {
+  for (var i = 0; i <  population; i++) {
     let email = faker.internet.email();
     let password = faker.internet.password((memorable = true));
     let firstName = faker.name.firstName();
@@ -53,7 +53,7 @@ const populateUsers = async () => {
 };
 
 const populateMessages = async () => {
-  let users = await User.aggregate().sample(2.5 * population);
+  let users = await User.aggregate().sample(5 * population);
   for (let user of users) {
     let content = faker.lorem.paragraph();
     let messages = await Message.create({
@@ -64,7 +64,7 @@ const populateMessages = async () => {
 };
 
 const populateFriends = async () => {
-  for (let i = 0; i < population; i++) {
+  for (let i = 0; i < 3*population; i++) {
     let users = await User.aggregate().sample(2);
     let exists = await Friend.findOne({
       $or: [

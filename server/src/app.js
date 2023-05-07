@@ -4,7 +4,6 @@ const session = require("express-session");
 const { connectToDB, url } = require("./config/db");
 const router = require("./routes");
 const { populateDb } = require("./config/initDb");
-const { dbStats } = require("./config/dbStats");
 const { MongoDBStore } = require("connect-mongodb-session");
 const cors = require("cors");
 
@@ -23,7 +22,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(router);
 connectToDB();
 populateDb();
-dbStats();
 app.use(errorHandler);
 
 module.exports = app;

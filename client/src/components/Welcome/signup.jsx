@@ -1,14 +1,13 @@
 import { Link, Button, Typography } from "@mui/material";
-import logo from "../img/logo.png";
-import "../css/signup.css";
-import { useState } from "react";
+import logo from "../../img/logo.png";
+import "../../css/signup.css";
+import { useState,useEffect } from "react";
 
 import axios from "axios";
 
 const Signup = ({ changeWelcomeView, changeLoginView }) => {
   let userRegEx = /^[A-Za-z\s]*$/;
   let emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  let pwdRegEx = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
   const [userLogin, setUserLogin] = useState("");
   const [userPwd, setUserPwd] = useState("");
@@ -17,33 +16,35 @@ const Signup = ({ changeWelcomeView, changeLoginView }) => {
   const [matchPwd, setMatchPwd] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (success) {
-      try {
-        let response = await axios.post("http://127.0.0.1:5000/api/users", {
-          email: userLogin,
-          firstName: userPrenom,
-          lastName: userNom,
-          password: userPwd,
-        });
-        console.log(response.data);
-        setSuccess(!success);
-        // clear input fields
-      } catch (err) {
-        if (!err?.response) {
-          setErrMsg("No server response");
-        } else if (err.response?.status === 500) {
-          setErrMsg("Login already exists");
-        } else {
-          setErrMsg("Registration failed");
+  useEffect(()=>{
+    const handleSubmit = async () => {
+      if (success) {
+        console.log("debug")
+        try {
+          let response = await axios.post("http://127.0.0.1:5000/api/users", {
+            email: userLogin,
+            firstName: userPrenom,
+            lastName: userNom,
+            password: userPwd,
+          });
+          console.log(response.data);
+          setSuccess(!success);
+          // clear input fields
+        } catch (err) {
+          if (!err?.response) {
+            setErrMsg("No server response");
+          } else if (err.response?.status === 500) {
+            setErrMsg("Login already exists");
+          } else {
+            setErrMsg("Registration failed");
+          }
         }
       }
-    }
-  };
+    };
+    handleSubmit()
+  },[success])
 
-  const checkInfos = () => {
+  const checkInfos = async() => {
     if (userLogin && !emailRegEx.test(userLogin)) {
       console.log("erreur1");
       setSuccess(false);
@@ -63,7 +64,7 @@ const Signup = ({ changeWelcomeView, changeLoginView }) => {
       setErrMsg("Please reverfiy your password");
       return;
     }
-    setSuccess(true);
+    await setSuccess(true);
     changeLoginView();
   };
 
@@ -86,7 +87,7 @@ const Signup = ({ changeWelcomeView, changeLoginView }) => {
         >
           {errMsg}
         </Typography>
-        <form className="signupForm" onSubmit={handleSubmit}>
+        <form className="signupForm">
           <img src={logo} alt="logo" className="logo"></img>
           <h1 className="signupTitle">Inscrivez-vous</h1>
           <input
