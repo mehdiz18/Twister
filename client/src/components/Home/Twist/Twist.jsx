@@ -15,7 +15,7 @@ import axios from "axios";
 import axiosConfig from "../../../hooks/consts";
 import ModifyDialog from "../Dialog/ModifyDialog";
 import AddComment from "../Dialog/AddCommentDialog";
-import ListComments from "./ListCommentsDialog";
+import ListComments from "../Dialog/ListCommentsDialog";
 import ProfileDialog from "../Dialog/ProfileDialog";
 
 const Twist = ({ message, userId, deleteTwist, modifyTwist }) => {
