@@ -20,6 +20,7 @@ const useLogin = () => {
         );
         setLoginState(true);
         userId.current = response.data.userId;
+        console.log(`User ${userId.current} Logged Successfuly`);
       } catch (error) {
         setLoginError(true);
         setPassword("");
@@ -29,9 +30,8 @@ const useLogin = () => {
     }
   };
   const logout = async () => {
-    // let response = await axios.delete("http://127.0.0.1:5000/api/users/logout");
-    // console.log(response.data);
     setLoginState(false);
+    console.log(`User Logged Out Sucessfully`);
   };
   const changeEmail = (event) => {
     setLoginError(false);
