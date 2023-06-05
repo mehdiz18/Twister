@@ -12,10 +12,7 @@ Développement d'un clône du réseau social Twitter.
 
 ## Pour Exécuter
 
-Exécutez la commande : make  
-Puis la commande : ./exe/motion_acc.exe  
-  
-Note : Vérifiez bien ce qui va être exécuté en regardant dans le fichier main.c
+Exécutez la commande : npm start
 
 ## Auteurs
 
