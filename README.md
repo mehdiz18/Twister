@@ -4,7 +4,10 @@ Développement d'un clône du réseau social Twitter.
  
 ## Fait avec
 
-<img src="https://img.shields.io/badge/MERN_STACK-ED8B00?style=for-the-badge&logo=&logoColor=white" data-canonical-src="https://img.shields.io/badge/C-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>
+<img src="https://img.shields.io/badge/REACTJS-ED8B00?style=for-the-badge&logo=&logoColor=white" data-canonical-src="https://img.shields.io/badge/C-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>
+<img src="https://img.shields.io/badge/EXPRESSJS-ED8B00?style=for-the-badge&logo=&logoColor=white" data-canonical-src="https://img.shields.io/badge/C-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>
+<img src="https://img.shields.io/badge/NODEJS-ED8B00?style=for-the-badge&logo=&logoColor=white" data-canonical-src="https://img.shields.io/badge/C-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>
+<img src="https://img.shields.io/badge/MONGODB-ED8B00?style=for-the-badge&logo=&logoColor=white" data-canonical-src="https://img.shields.io/badge/C-ED8B00?style=for-the-badge&logo=java&logoColor=white"/
 
 ## Pour Exécuter
 
